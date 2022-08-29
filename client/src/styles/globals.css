@@ -1,0 +1,365 @@
+/* Globals */
+a{
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+section{
+    width: 80%;
+    margin-inline: auto;
+}
+
+
+p, h1, h2, h3{
+    margin: 0;
+}
+
+h1, h2, h3, th{
+    text-align: center;
+    font-weight: 500;
+}
+
+td, th {
+    font-size: 1.125em;
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: center;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    padding: 0.8em;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgb(0 0 0 / 0.2);
+    box-sizing: border-box;
+}
+
+form > *{
+    margin-bottom: 0.6em;
+}
+
+label{
+    font-size: 1.125em;
+}
+
+input, textarea {
+    width: 100%;
+    display: block;
+    font-size: 1.125em;
+    border-radius: 8px;
+    padding: 0.25em;
+    margin-top: 0.2em;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus{
+    outline: none;
+    border: 2px solid #719ECE;
+    transition: 0.1s ease-in border;
+}
+
+textarea{
+    font-family: sans-serif;
+    resize: none;
+    min-height: 120px;
+}
+
+button {
+    cursor: pointer;
+    background: transparent;
+    font-size: 1.125em;
+    border: none;
+    border-radius: 8px;
+    padding-block: 0.25em;
+}
+
+button[type="submit"]{
+    background-color: #28A745;
+    color: white;
+}
+
+/* Header and navigation bar */
+#header {
+    width: 100%;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#navbar {
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+}
+
+.nav-link{
+    font-size: 1.25em;
+    color: black;
+}
+
+/* Targets first element of navigation bar */
+#navbar > *:first-child{
+    display: flex;
+    align-items: center;
+}
+
+.user-name{
+    margin-left: 0.8em;
+}
+
+
+#navbar .profile-pic{
+    width: 56px; 
+    height: 56px;
+    border-radius: 50%;
+}
+
+/* User options */
+#user-options{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    margin-top: calc(60px + 0.8em);
+}
+
+#user-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 0.8em;
+    align-items: center;
+}
+
+#user-description{
+    width: 80%;
+    margin-inline: auto;
+    text-align: center;
+}
+
+#user-options .profile-pic{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+#user-analytics{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#data-title{
+    font-size: 1.25em;
+}
+
+
+
+/* User's posts and all posts  */
+.posts{
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8em;
+}
+
+.post {
+    border: 1px solid lightgray;
+    padding: 0.6em 0.8em;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgb(0 0 0 / 0.2);
+}
+
+.reactions-results, .reactions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reactions-results, .post-snippet{
+    font-size: 1.125em;
+}
+
+.reactions{
+    border-top: 1px solid lightgray;
+}
+
+/* Like button and comment link  */
+.reactions > *:not(:last-child){
+    color: black;
+}
+
+.reaction-link{
+    font-size: 1.125em;
+    padding: 0.25em;
+}
+
+.post > * {
+    margin-top: 0.6em;
+}
+
+#all-posts > *, #user-posts > *{
+    margin-top: 0.8em;
+}
+
+/* Pagination */
+#pagination{
+    width: 80%; 
+    margin-inline: auto;
+    margin-top: 0.8em;
+    display: flex;
+    justify-content: center;
+}
+
+#pagination a{
+    border: 1px solid lightgray;
+    font-size: 1.125em;
+    padding: 8px 16px;
+    transition: background-color 0.3s;
+    margin-inline: 0.4em;
+}
+
+.active{
+    background-color: #4CAF50; 
+    color: white;
+}
+
+/* Blog post */
+#blog-info{
+    margin-top: calc(60px + 0.8em);
+}
+
+#blog-info-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0.2em;
+    margin-bottom: 0.4em;
+}
+
+#blog-info p{
+    font-size: 1.125em;
+}
+
+/* Styles all components except for the h1 tag*/
+#blog-info > *:not(:first-child){
+    margin-bottom: 0.8em;
+}
+
+#comments .profile-pic {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+
+#make-comment{
+    display: grid; 
+    grid-template-columns: 56px auto 80px;
+    gap: 2%;
+    align-items: center;
+    margin-bottom: 0.8em;
+}
+
+.comment {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+    font-size: 1.125em;
+    border: 1px solid lightgray;
+    padding: 0.8em;
+    margin-bottom: 0.8em;
+    border-radius: 8px;
+    box-shadow: 0 0 4px rgb(0 0 0 / 0.2);
+}
+
+/* Sign in and sign up pages  */
+#login, #register{
+    width: 40%;
+    margin-inline: auto;
+    margin-top: calc(60px + 0.8em);
+    min-height: calc(100vh - 2*56px - 2*0.8em);
+}
+
+#login h1, #register h1{
+    font-size: 1.75em;
+    font-weight: 500;
+    margin-bottom: 0.2em;
+}
+
+/* Footer */
+#footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid lightgray; 
+    height: 56px;
+    margin-top: 0.8em;
+}
+
+/* Utilities */
+.italic{
+    font-style: italic;
+}
+
+.blog-pic {
+    border-radius: 8px;
+}
+
+@media(max-width: 950px){
+    #user-options{
+        grid-template-rows: repeat(2, 1fr); 
+        grid-template-columns: auto;
+    }
+
+    #post-form{
+        width: 100%;
+    }
+
+    #login, #register{
+        width: 60%;
+    }
+
+    .posts{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 750px){
+   .user-options, #navbar, section{
+        width: 90%; 
+    }
+
+    .posts{
+        grid-template-columns: 100%;
+    }
+
+    #pagination{
+        justify-content: space-between;
+    }
+    #pagination a {
+        padding: 0.3em 0.6em;
+        margin: 0;
+    }
+
+    #login, #register{
+        width: 90%;
+    }
+
+    #login h1, #register h1{
+        font-size: 1.5em;
+    }
+}
