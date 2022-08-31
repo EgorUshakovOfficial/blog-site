@@ -47,7 +47,7 @@ const routes = (app, User) => {
             await user.save();
             return res.json({
                 success: true,
-                message: "User is successfully registered and may now log in "
+                message: "User is successfully registered and may now log in."
             }); 
         } catch (err) {
             return res.send(err);

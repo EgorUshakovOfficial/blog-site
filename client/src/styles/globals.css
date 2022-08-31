@@ -320,11 +320,15 @@ button[type="submit"]{
     border-radius: 4px;
     margin-bottom: 0.4em;
     box-sizing: border-box;
-    border: 1px solid #D4EDDA;
+    border: 1px solid lightgray;
 }
 
 .alert-success {
     background-color: #D4EDDA;
+}
+
+.alert-danger{
+    background-color: #F8D7DA;
 }
 
 .alert-message{

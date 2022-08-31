@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios'; 
 export default function useAuth() {	
 	// State 
@@ -45,13 +44,17 @@ export default function useAuth() {
 		// POST request to login 
 		api.post("/login", { email, password })
 			.then(res => {
-				if (res.status === 401) {
-					return setError("Please provide a valid email address and password.");
-				}
+
 				setToken(res.data.token); 
 				window.location.replace("http://localhost:3000");
 			})
-			.catch(err => setError("Error! Something went wrong!"));
+			.catch(err => {
+				if (err.response.status === 401) {
+					setError("Please provide a valid email address and password.");
+				} else {
+					setError("Error! Something went wrong!")
+                }
+            });
 	}
 
 	const handleLogout = e => {
@@ -77,6 +80,7 @@ export default function useAuth() {
 		setPassword, 
 		handleLogin, 
 		handleLogout, 
-		api
+		error, 
+		setError
 	}
 }
