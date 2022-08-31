@@ -11,6 +11,7 @@ export default function RegistrationForm() {
         setPassword,
         onSubmit
     } = useRegister()
+
     return (
         <form id="registration-form" onSubmit={onSubmit} >
             <div className="name">

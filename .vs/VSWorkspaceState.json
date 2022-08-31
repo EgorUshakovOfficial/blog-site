@@ -4,9 +4,10 @@
     "\\client",
     "\\client\\src",
     "\\client\\src\\components",
-    "\\client\\src\\pages",
-    "\\client\\src\\styles"
+    "\\client\\src\\containers",
+    "\\client\\src\\hooks",
+    "\\utils"
   ],
-  "SelectedNode": "\\client\\src\\pages\\Home.js",
+  "SelectedNode": "\\client\\src\\components\\UserAnalytics.js",
   "PreviewInSolutionExplorer": false
 }

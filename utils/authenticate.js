@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 const COOKIE_OPTIONS = {
 	httpOnly: true, 
 	signed: true, 
-	secure: false, 
+	secure: true, 
 	maxAge: eval(process.env.REFRESH_TOKEN_EXPIRY) * 1000, 
 	sameSite:"none"
 }

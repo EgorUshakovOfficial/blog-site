@@ -1,18 +1,19 @@
 import './config/envconfig.js';
-import { ApolloServer } from 'apollo-server-express'; 
+import express from 'express';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import passport from 'passport';
+import cors from 'cors';
+import http from 'http';
+import { ApolloServer } from 'apollo-server-express';
 import {
     ApolloServerPluginDrainHttpServer,
     ApolloServerPluginLandingPageLocalDefault,
 } from 'apollo-server-core'; 
-import express from 'express';
-import bodyParser from 'body-parser'; 
-import cookieParser from 'cookie-parser'; 
-import { User } from './models/User.js';
-import passport from 'passport';
 import routes from './routes.js';
 import { connectdb } from './config/connectdb.js';
+import { User } from './models/User.js';
 import './auth/strategies/LocalStrategy.js';
-import http from 'http'; 
 import { typeDefs } from './schema/schema.js';
 import { resolvers } from './resolvers/resolvers.js';
 
@@ -24,6 +25,10 @@ const startApolloServer = async (typeDefs, resolvers) => {
     connectdb();
 
     // Middleware 
+    app.use(cors({
+        origin: ["http://localhost:3000"],
+        credentials: true
+    })); 
     app.use(bodyParser.urlencoded({ extended: false })); 
     app.use(bodyParser.json());
     app.use(cookieParser(process.env.COOKIE_SECRET)); 
@@ -36,7 +41,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
         typeDefs,
         resolvers,
         csrfPrevention: true,
-        cache: 'bounded',
+        cache: 'bounded', 
         plugins: [
             ApolloServerPluginDrainHttpServer({ httpServer }),
             ApolloServerPluginLandingPageLocalDefault({ embed: true }),
@@ -47,9 +52,9 @@ const startApolloServer = async (typeDefs, resolvers) => {
         app, 
         path: "/",
         cors: {
-            origin: "*"
+            origin: ["http://localhost:3000"],
+            credentials: true
         }, 
-        credentials: true
     }); 
 
     server.applyMiddleware({ app }); 

@@ -1,15 +1,16 @@
-import useLogin from '../hooks/useLogin'; 
+import { useContext } from 'react'; 
+import { AuthContext } from '../containers/AuthProvider'; 
 export default function LoginForm() {
     const {
         email,
         setEmail,
         password,
         setPassword,
-        onSubmit
-    } = useLogin()
+        handleLogin
+    } = useContext(AuthContext);
 
     return (
-        <form id="login-form" onSubmit={onSubmit} >
+        <form id="login-form" onSubmit={handleLogin} >
             <div className="field">
                 <label for="email">Email</label>
                 <input

@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
-import { useMemo } from 'react'; 
+import { useContext, useMemo } from 'react'; 
+import { AuthContext } from '../containers/AuthProvider'; 
 export default function Navbar() {
-    let isAuthenticated = false;
+    const {token, handleLogout} = useContext(AuthContext);
 
     // Styles
     const style = useMemo(() => {
         return {
-            height: isAuthenticated === false  ? "56px" : "auto"
+            height: token ? "auto" : "56px"
         }
-    }, [isAuthenticated])
+    }, [token])
 
 	return (
         <nav id="navbar" style={style}>
-            {isAuthenticated ?
+            {token ?
                 <Link className="nav-link" to="/">
                     <div className="profile-div">
                         <img
@@ -26,12 +27,12 @@ export default function Navbar() {
                 <Link className="nav-link" to="/">Home</Link>
             }
             <div className="auth-links">
-                {isAuthenticated ?
-                    <Link className="nav-link" to="/signup">Logout</Link>
+                {token ?
+                    <button className="nav-link" onClick={handleLogout}>Logout</button>
                     :
                     <>
-                        <Link className="nav-link" to="/sign-in" style={{marginRight:"0.4em"}}>Login</Link>
-                        <Link className="nav-link" to="/sign-up">Register</Link>
+                        <Link className="nav-link" to="/login" style={{marginRight:"0.4em"}}>Login</Link>
+                        <Link className="nav-link" to="/register">Register</Link>
                     </>
                 }
             </div>

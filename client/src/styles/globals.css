@@ -310,6 +310,41 @@ button[type="submit"]{
     margin-top: 0.8em;
 }
 
+/* Alert Message */
+.alert {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-block: 0.4em;
+    border-radius: 4px;
+    margin-bottom: 0.4em;
+    box-sizing: border-box;
+    border: 1px solid #D4EDDA;
+}
+
+.alert-success {
+    background-color: #D4EDDA;
+}
+
+.alert-message{
+    font-size: 1.125em;
+    width: 80%;
+    text-align: center;
+    margin-inline: auto;
+}
+
+.close{
+    cursor: pointer;
+    left: 92%;
+    font-size: 1.25em;
+    position: absolute;
+}
+
+.close:hover{
+    opacity: 0.7;
+}
+
 /* Utilities */
 .italic{
     font-style: italic;
