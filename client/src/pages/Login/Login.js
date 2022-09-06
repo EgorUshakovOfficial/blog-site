@@ -1,7 +1,7 @@
 import LoginForm from './LoginForm'; 
 import { useLocation, useNavigate} from 'react-router-dom'; 
 import { useEffect, useState, useContext} from 'react'; 
-import {AuthContext} from '../containers/AuthProvider';
+import {AuthContext} from '../../context/AuthProvider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
 export default function Login() {

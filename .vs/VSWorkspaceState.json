@@ -1,13 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\client",
-    "\\client\\src",
-    "\\client\\src\\components",
-    "\\client\\src\\containers",
-    "\\client\\src\\hooks",
-    "\\utils"
+    "\\schema"
   ],
-  "SelectedNode": "\\client\\src\\components\\UserAnalytics.js",
+  "SelectedNode": "\\server.js",
   "PreviewInSolutionExplorer": false
 }

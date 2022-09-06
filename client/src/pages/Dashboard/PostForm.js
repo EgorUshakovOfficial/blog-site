@@ -1,4 +1,4 @@
-import usePost from '../hooks/usePost'; 
+import usePost from '../../hooks/usePost'; 
 export default function PostForm() {
     const {
         title, 

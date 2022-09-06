@@ -1,6 +1,6 @@
-import PostForm from '../components/PostForm'; 
-import UserAnalytics from '../components/UserAnalytics';
-export default function UserOptions() {
+import PostForm from './PostForm'; 
+import UserAnalytics from './UserAnalytics';
+export default function UserOptions({numLikes, numComments, numPosts}) {
     return (
         <section id="user-options">
             <div id="user-info">
@@ -11,7 +11,11 @@ export default function UserOptions() {
                     />
                 </div>
                 <h2 id="data-title">Data Analytics</h2>
-                <UserAnalytics />
+                <UserAnalytics
+                    numLikes={numLikes}
+                    numComments={numComments}
+                    numPosts={numPosts}
+                />
             </div>
             <PostForm />
         </section>

@@ -7,7 +7,7 @@ const AuthContext = createContext({});
 const AuthProvider = ({ children }) => {
 	// Authentication
 	const props = useAuth(); 
-	
+
 	return (
 		<AuthContext.Provider value={{...props}}>
 			{children}

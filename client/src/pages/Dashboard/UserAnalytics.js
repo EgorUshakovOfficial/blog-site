@@ -3,7 +3,7 @@ import {
     faThumbsUp,
     faComment
 } from '@fortawesome/free-solid-svg-icons';
-export default function UserAnalytics() {
+export default function UserAnalytics({numLikes, numComments, numPosts}) {
     return (
         <table id="user-analytics">
             <tr>
@@ -12,9 +12,9 @@ export default function UserAnalytics() {
                 <th>Posts</th>
             </tr>
             <tr>
-                <td>10</td>
-                <td>20</td>
-                <td>20</td>
+                <td>{numLikes}</td>
+                <td>{numComments}</td>
+                <td>{numPosts}</td>
             </tr>
         </table>
     )

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'; 
+import { User } from '../models/User.js';
 
 const COOKIE_OPTIONS = {
 	httpOnly: true, 
@@ -22,4 +23,19 @@ const getRefreshToken = user => {
 	}); 
 }
 
-export { COOKIE_OPTIONS, getToken, getRefreshToken}
+// Retrieve user object 
+const getUser = async token => {
+	try {
+		const payload = jwt.verify(token, process.env.JWT_SECRET);
+		let user = await User.findById(payload._id);
+		console.log(user)
+		if (user === null) { return null; }
+		delete user.refreshToken; 
+		return user; 
+	}
+	catch (err) {
+		return null 
+    }
+}
+
+export { COOKIE_OPTIONS, getToken, getRefreshToken, getUser };

@@ -181,6 +181,7 @@ button[type="submit"]{
     padding: 0.6em 0.8em;
     border-radius: 8px;
     box-shadow: 0 0 6px rgb(0 0 0 / 0.2);
+    transition: box-shadow 0.5s;
 }
 
 .reactions-results, .reactions{

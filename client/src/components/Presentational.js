@@ -1,17 +1,20 @@
 import { useContext } from 'react';
-import { AuthContext } from '../containers/AuthProvider';
 import {
     BrowserRouter as Router,
     Routes,
     Route, 
     Navigate
 } from 'react-router-dom';
+import { ApolloProvider } from '@apollo/client';
 import Private from '../containers/Private'; 
-import Home from '../pages/Home';
-import DashBoard from '../pages/Dashboard';
-import SignUp from '../pages/SignUp';
-import SignIn from '../pages/SignIn';
-import BlogPost from '../pages/BlogPost';
+import Home from '../pages/Home/index';
+import DashBoard from '../pages/Dashboard/index';
+import SignUp from '../pages/Register/index';
+import SignIn from '../pages/Login/index';
+import BlogPost from '../pages/Blogpost/index';
+import { AuthContext } from '../context/AuthProvider';
+import { UserProvider } from '../context/UserProvider'; 
+import { getClient } from '../utils/getClient';
 
 export default function Presentational() {
     const { token } = useContext(AuthContext);
@@ -21,17 +24,19 @@ export default function Presentational() {
             {token === null ? 
                 <p>Loading...</p>
                 :
-                <Router>
-                    <Routes>
-                        {token === "" && <Route path="/" element={<Home />} exact />}
-                        <Route element={<Private />}>
-                            <Route path="/" element={<DashBoard />} exact />
-                            <Route path="/post/:id" element={<BlogPost />} />
-                        </Route>
-                        <Route path="/register" element={<>{token === "" ? <SignUp /> : <Navigate to="/" />}</>} />
-                        <Route path="/login" element={<>{token === "" ? <SignIn /> : <Navigate to="/" />}</>} />
-                    </Routes>
-                </Router>
+                <ApolloProvider client={getClient(token)}>
+                    <Router>
+                        <Routes>
+                            {token === "" && <Route path="/" element={<Home />} exact />}
+                            <Route element={<Private />}>
+                                <Route path="/" element={<DashBoard />} exact />
+                                <Route path="/post/:id" element={<BlogPost />} />
+                            </Route>
+                            <Route path="/register" element={<>{token === "" ? <SignUp /> : <Navigate to="/" />}</>} />
+                            <Route path="/login" element={<>{token === "" ? <SignIn /> : <Navigate to="/" />}</>} />
+                        </Routes>
+                    </Router>
+                </ApolloProvider>
             }
         </>
     )

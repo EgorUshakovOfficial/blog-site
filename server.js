@@ -13,6 +13,7 @@ import {
 import routes from './routes.js';
 import { connectdb } from './config/connectdb.js';
 import { User } from './models/User.js';
+import { getUser, getToken} from './utils/authenticate.js'; 
 import './auth/strategies/LocalStrategy.js';
 import { typeDefs } from './schema/schema.js';
 import { resolvers } from './resolvers/resolvers.js';
@@ -41,6 +42,11 @@ const startApolloServer = async (typeDefs, resolvers) => {
         typeDefs,
         resolvers,
         csrfPrevention: true,
+        context: async ({ req }) => {
+            let token = req.headers?.authorization.replace(/bearer\s/i, "") || ""
+            let user = await getUser(token)
+            return { user }
+        },
         cache: 'bounded', 
         plugins: [
             ApolloServerPluginDrainHttpServer({ httpServer }),
