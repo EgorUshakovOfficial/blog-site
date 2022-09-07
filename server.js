@@ -10,10 +10,11 @@ import {
     ApolloServerPluginDrainHttpServer,
     ApolloServerPluginLandingPageLocalDefault,
 } from 'apollo-server-core'; 
+import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
 import routes from './routes.js';
 import { connectdb } from './config/connectdb.js';
 import { User } from './models/User.js';
-import { getUser, getToken} from './utils/authenticate.js'; 
+import { getUser } from './utils/authenticate.js'; 
 import './auth/strategies/LocalStrategy.js';
 import { typeDefs } from './schema/schema.js';
 import { resolvers } from './resolvers/resolvers.js';
@@ -26,6 +27,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
     connectdb();
 
     // Middleware 
+    app.use(express.static('public')); 
     app.use(cors({
         origin: ["http://localhost:3000"],
         credentials: true
@@ -33,7 +35,8 @@ const startApolloServer = async (typeDefs, resolvers) => {
     app.use(bodyParser.urlencoded({ extended: false })); 
     app.use(bodyParser.json());
     app.use(cookieParser(process.env.COOKIE_SECRET)); 
-    app.use(passport.initialize()); 
+    app.use(passport.initialize());
+    app.use(graphqlUploadExpress()); 
 
     // Authentication routes 
     routes(app, User); 

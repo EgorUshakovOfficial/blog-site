@@ -1,11 +1,17 @@
 import { gql } from 'apollo-server'; 
 
 const typeDefs = gql`
+    scalar Upload
+
     type Query{
         user: User!
-        allPosts(first: Int!, offset: Int!): [Post!]!
+        posts(first: Int!, offset: Int!): [Post!]!
     }
-    
+
+    type Mutation{
+        createPost(title: String!, description: String!, file: Upload!): Post
+    }
+
     type User{
         _id: ID!
         " First name of the user"
@@ -14,6 +20,8 @@ const typeDefs = gql`
         lastName: String!
         "Total number of posts the user liked"
         likes: [Like!]!
+        "Url of profile picture"
+        photoUrl: String!
         "Total number of posts the user commented on"
         comments: [Comment]!
         "Total number of posts created by user"
@@ -26,6 +34,8 @@ const typeDefs = gql`
         title: String!
         "Description of the post"
         description: String!
+        "Photo url of blog picture"
+        photoUrl: String! 
         "Date of when post is created"
         createdAt: String!
         "Users who liked the post"

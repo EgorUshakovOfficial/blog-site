@@ -16,8 +16,15 @@ const GET_USER = gql`
             posts{
                 _id
                 title
+                photoUrl
                 description
                 authorId
+                comments{
+                    _id
+                }
+                likes{
+                    _id
+                }
             }
         }
     }

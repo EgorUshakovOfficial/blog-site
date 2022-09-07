@@ -1,11 +1,12 @@
 import usePost from '../../hooks/usePost'; 
+import { useMutation } from '@apollo/client'; 
 export default function PostForm() {
     const {
         title, 
         setTitle, 
         setImage,
         post,
-        setPostDescription,
+        setDescription,
         onSubmit 
     } = usePost()
     return (
@@ -18,6 +19,7 @@ export default function PostForm() {
                     value={title}
                     placeholder="Name of post"
                     onChange={e => setTitle(e.target.value)}
+                    required
                 />
             </div>
             <div className="field">
@@ -26,7 +28,8 @@ export default function PostForm() {
                     type="file"
                     id="blog-pic"
                     accept="image/*"
-                    onChange={e => setImage(e.target.files[0]) }
+                    onChange={e => setImage(e.target.files[0])}
+                    required
                 />
             </div>
             <div className="field">
@@ -35,8 +38,9 @@ export default function PostForm() {
                     type="text"
                     id="post-description"
                     value={post}
-                    onChange={e => setPostDescription(e.target.value)}
+                    onChange={e => setDescription(e.target.value)}
                     placeholder="What's on your mind, user?"
+                    required
                 />
             </div>
             <button type="submit" id="submit">Create Post</button>

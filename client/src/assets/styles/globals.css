@@ -88,6 +88,12 @@ button[type="submit"]{
     color: white;
 }
 
+/* Content of pages */
+.content {
+    margin-top: calc(60px + 0.8em);
+    min-height: calc(100vh - 2*56px - 2*0.8em);
+}
+
 /* Header and navigation bar */
 #header {
     width: 100%;
@@ -167,8 +173,6 @@ button[type="submit"]{
     font-size: 1.25em;
 }
 
-
-
 /* User's posts and all posts  */
 .posts{
     display: grid; 
@@ -184,22 +188,25 @@ button[type="submit"]{
     transition: box-shadow 0.5s;
 }
 
-.reactions-results, .reactions{
+.reactions-results, .reactions-controls{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+}
+
+.reactions-results{
+    justify-content: space-between;
 }
 
 .reactions-results, .post-snippet{
     font-size: 1.125em;
 }
 
-.reactions{
+.reactions-controls{
     border-top: 1px solid lightgray;
 }
 
 /* Like button and comment link  */
-.reactions > *:not(:last-child){
+.reactions-controls a{
     color: black;
 }
 
@@ -291,8 +298,6 @@ button[type="submit"]{
 #login, #register{
     width: 40%;
     margin-inline: auto;
-    margin-top: calc(60px + 0.8em);
-    min-height: calc(100vh - 2*56px - 2*0.8em);
 }
 
 #login h1, #register h1{
@@ -355,8 +360,18 @@ button[type="submit"]{
     font-style: italic;
 }
 
+.blog-pic-div{
+    display: flex; 
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+
 .blog-pic {
+    width: 300px;
+    height: 300px;
     border-radius: 8px;
+    object-fit: contain;
 }
 
 @media(max-width: 950px){

@@ -1,9 +1,17 @@
 import Posts from '../../components/Posts';
-export default function UserPosts({posts}) {
+import { useContext } from 'react'; 
+import { UserContext } from '../../context/UserProvider'; 
+export default function UserPosts() {
+    const { posts } = useContext(UserContext);
+
     return (
         <section id="user-posts">
             <h1 className="title">Your Posts</h1>
-            <Posts posts={posts} />
+            {posts.length === 0 ?
+                <p style={{textAlign:"center", fontSize:"1.125em"}}>You have not created any posts.</p>
+                :
+                <Posts posts={posts} />
+            }
         </section>
     )
 }

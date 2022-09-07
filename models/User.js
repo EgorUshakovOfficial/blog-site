@@ -12,6 +12,7 @@ const userSchema = new Schema({
     firstName: { type: String },
     lastName: { type: String }, 
     email: { type: String }, 
+    photoUrl: {type: String, default:""}, 
     password: { type: String },
     refreshToken: { type: [sessionSchema], default:[]}
 })

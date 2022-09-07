@@ -3,29 +3,16 @@ import {
     faThumbsUp,
     faComment
 } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'; 
-export default function Reactions() {
+import { useContext } from 'react'; 
+import { AuthContext } from '../context/AuthProvider'; 
+import ReactionsResults from './ReactionsResults';
+import ReactionControls from './ReactionControls';
+export default function Reactions({numLikes, numComments }) {
+    const { token } = useContext(AuthContext); 
     return (
         <>
-            <div className="reactions-results">
-                <div className="num-likes">
-                    <FontAwesomeIcon icon={faThumbsUp} /> 10
-                </div>
-                <div className="num-comments">
-                    10 Comments
-                </div>
-            </div>
-            <div className="reactions">
-                <button className="reaction-button">
-                    Like <FontAwesomeIcon icon={faThumbsUp} />
-                </button>
-                <Link to="#" className="reaction-link">
-                    Comment <FontAwesomeIcon icon={faComment} />
-                </Link>
-                <Link to="#" className="reaction-link">
-                    Read more
-                </Link>
-            </div>
+            <ReactionsResults numComments={numComments} numLikes={numLikes} />
+            {token && <ReactionControls />}
         </>
     )
 }

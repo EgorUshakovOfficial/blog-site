@@ -1,4 +1,6 @@
-import Reactions from '../components/Reactions'; 
+import { Link } from 'react-router-dom';
+import Reactions from '../components/Reactions';
+
 export default function Post({
     postTitle,
     img, 
@@ -12,8 +14,13 @@ export default function Post({
             <div className="blog-pic-div">
                 <img src={img} className="blog-pic" />
             </div>
-            <p className="post-snippet">{postSnippet}</p>
-            <Reactions />
+            <p className="post-snippet">
+                {postSnippet}
+                <Link to="#" className="reaction-link">
+                    Read more
+                </Link>
+            </p>
+            <Reactions numLikes={numLikes} numComments={numComments} />
         </div>
     )
 }
