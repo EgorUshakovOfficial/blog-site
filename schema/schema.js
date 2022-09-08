@@ -5,7 +5,8 @@ const typeDefs = gql`
 
     type Query{
         user: User!
-        posts(first: Int!, offset: Int!): [Post!]!
+        posts: [Post!]!
+        post(id: String!): Post
     }
 
     type Mutation{
@@ -28,6 +29,12 @@ const typeDefs = gql`
         posts: [Post!]!
     }
 
+    type Author{
+        userId: ID! 
+        firstName: String!
+        lastName: String!
+    }
+
     type Post{
         _id: ID!
         "Title of the post"
@@ -43,7 +50,7 @@ const typeDefs = gql`
         "Comments of the post"
         comments: [Comment!]!
         "Author of post" 
-        authorId: String!
+        author: Author!
     }
     
     type Comment{

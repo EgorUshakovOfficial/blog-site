@@ -7,12 +7,12 @@ import { useContext } from 'react';
 import { AuthContext } from '../context/AuthProvider'; 
 import ReactionsResults from './ReactionsResults';
 import ReactionControls from './ReactionControls';
-export default function Reactions({numLikes, numComments }) {
+export default function Reactions({numLikes, numComments, id}) {
     const { token } = useContext(AuthContext); 
     return (
         <>
             <ReactionsResults numComments={numComments} numLikes={numLikes} />
-            {token && <ReactionControls />}
+            {token && <ReactionControls id={id} />}
         </>
     )
 }

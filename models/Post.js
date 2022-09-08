@@ -4,8 +4,9 @@ const { Schema } = mongoose;
 const postSchema = new Schema({
     title: { type: String },
     description: { type: String },
-    photoUrl: {type: String},
-    createdAt: { type: Date },
+    photoUrl: { type: String },
+    postUrl: {type:String},
+    createdAt: { type: Date, default: Date.now},
     authorId: { type: String }
 }); 
 

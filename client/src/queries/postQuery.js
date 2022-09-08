@@ -1,18 +1,12 @@
 import { gql } from '@apollo/client'; 
 
-const GET_POSTS = gql`
-    query getPosts{
-        posts{
-            _id
+const GET_POST = gql`
+    query getPost($id: String!){
+        post(id: $id){
             title
             description
+            createdAt
             photoUrl
-            likes{
-                _id
-            }
-            comments{
-                _id
-            }
             author{
                 userId
                 firstName
@@ -20,6 +14,6 @@ const GET_POSTS = gql`
             }
         }
     }
-`
+`; 
 
-export { GET_POSTS }; 
+export { GET_POST }; 

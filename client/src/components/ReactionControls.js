@@ -4,7 +4,7 @@ import {
     faThumbsUp, 
     faComment
 } from '@fortawesome/free-solid-svg-icons';
-export default function ReactionControls() {
+export default function ReactionControls({id}) {
     return (
         <div className="reactions-controls">
             <button className="reaction-button">
@@ -12,6 +12,9 @@ export default function ReactionControls() {
             </button>
             <Link to="#" className="reaction-link">
                 Comment <FontAwesomeIcon icon={faComment} />
+            </Link>
+            <Link to={`/post/${id}`} className="reaction-link">
+                Read more
             </Link>
         </div>
     )

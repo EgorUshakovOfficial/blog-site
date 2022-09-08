@@ -5,6 +5,9 @@ const POST_MUTATION = gql`
         createPost(title: $title, description: $description, file: $file){
             title
             description
+            author{
+                userId
+            }
         }
     }
 `

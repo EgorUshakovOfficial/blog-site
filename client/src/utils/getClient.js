@@ -3,11 +3,6 @@ import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
 
 const getClient = token => {
-    // Http link 
-    //const httpLink = new HttpLink({
-    //    uri: "http://localhost:4000/graphql"
-    //}); 
-
     // Upload link 
     const uploadLink = createUploadLink({
         uri: 'http://localhost:4000/graphql', 
@@ -22,10 +17,42 @@ const getClient = token => {
             }
         }
     })
-    
+
+
+    // Cache 
+    const cache = new InMemoryCache({
+        typePolicies: {
+            Query: {
+                fields: {
+                    post: {
+                        author: {
+                            merge(existing, incoming) {
+                                return incoming
+                            }
+                        }
+                    }
+                }
+            },
+            Mutation: {
+                fields: {
+                    createPost: {
+                        author: {
+                            merge(existing, incoming) {
+                                return incoming
+                            }
+                        }
+                    }
+                }
+            },
+            Author: {
+                keyFields: ["userId"]
+            }
+        }
+    })
+
     const client = new ApolloClient({
         link: authLink.concat(uploadLink),
-        cache: new InMemoryCache()
+        cache
     })
 
     return client; 

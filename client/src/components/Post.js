@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Reactions from '../components/Reactions';
 
 export default function Post({
+    id,
     postTitle,
     img, 
     postSnippet,
@@ -16,11 +17,8 @@ export default function Post({
             </div>
             <p className="post-snippet">
                 {postSnippet}
-                <Link to="#" className="reaction-link">
-                    Read more
-                </Link>
             </p>
-            <Reactions numLikes={numLikes} numComments={numComments} />
+            <Reactions numLikes={numLikes} numComments={numComments} id={id} />
         </div>
     )
 }

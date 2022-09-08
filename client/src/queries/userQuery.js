@@ -18,12 +18,14 @@ const GET_USER = gql`
                 title
                 photoUrl
                 description
-                authorId
                 comments{
                     _id
                 }
                 likes{
                     _id
+                }
+                author{
+                    userId
                 }
             }
         }

@@ -1,3 +1,4 @@
+import { User } from '../models/User.js'; 
 import { Post } from '../models/Post.js'; 
 import { Comment } from '../models/Comment.js'; 
 import { Like } from '../models/Like.js';
@@ -12,9 +13,13 @@ const resolvers = {
         user: (_, __, { user }) => {
             return user;
         }, 
-        posts: async (_, {first, offset}) => {
+        posts: async () => {
             let posts = await Post.find({});
-            return posts.slice(first, offset);
+            return posts;
+        }, 
+        post: async (_, { id }) => {
+            let post = await Post.findById(id); 
+            return post; 
         }
     },
 
@@ -39,6 +44,8 @@ const resolvers = {
                 photoUrl: link
             }); 
 
+            
+
             await newPost.save(); 
             return newPost; 
         }
@@ -52,6 +59,16 @@ const resolvers = {
         comments: async ({ _id }) => {
             let comments = await Comment.find({ userId: _id });
             return comments;
+        }, 
+        author: async ({ authorId }) => {
+            console.log(authorId);
+            let author = await User.findById(authorId);
+            console.log(author);
+            return {
+                userId: author._id, 
+                firstName: author.firstName, 
+                lastName: author.lastName
+            }
         }
     }, 
 
@@ -65,7 +82,7 @@ const resolvers = {
             return comments; 
         },
         posts: async ({ _id }) => {
-            let userPosts = await Post.find({ userId: _id }); 
+            let userPosts = await Post.find({ authorId: _id }); 
             return userPosts; 
         }
     }

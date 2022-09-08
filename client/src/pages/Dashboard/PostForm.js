@@ -5,8 +5,9 @@ export default function PostForm() {
         title, 
         setTitle, 
         setImage,
-        post,
+        description,
         setDescription,
+        image,
         onSubmit 
     } = usePost()
     return (
@@ -28,6 +29,7 @@ export default function PostForm() {
                     type="file"
                     id="blog-pic"
                     accept="image/*"
+                    value={image}
                     onChange={e => setImage(e.target.files[0])}
                     required
                 />
@@ -37,7 +39,7 @@ export default function PostForm() {
                 <textarea
                     type="text"
                     id="post-description"
-                    value={post}
+                    value={description}
                     onChange={e => setDescription(e.target.value)}
                     placeholder="What's on your mind, user?"
                     required

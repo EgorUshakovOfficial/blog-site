@@ -21,6 +21,7 @@ export default function Posts({ posts }) {
                             postSnippet={description}
                             numLikes={likes?.length}
                             numComments={comments?.length}
+                            id={_id}
                         />
                     )
                 })
