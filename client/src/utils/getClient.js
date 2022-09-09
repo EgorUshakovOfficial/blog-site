@@ -44,6 +44,29 @@ const getClient = token => {
                     }
                 }
             },
+            Post: {
+                fields: {
+                    likes: {
+                        merge(existing, incoming) {
+                            return incoming;
+                        }
+                    }
+                }
+            },
+            User: {
+                fields: {
+                    likes: {
+                        merge(existing, incoming) {
+                            return incoming
+                        }
+                    }, 
+                    comments: {
+                        merge(existing, incoming) {
+                            return incoming;
+                        }
+                    }
+                }
+            },
             Author: {
                 keyFields: ["userId"]
             }

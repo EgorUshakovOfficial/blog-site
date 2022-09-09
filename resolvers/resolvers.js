@@ -48,16 +48,41 @@ const resolvers = {
 
             await newPost.save(); 
             return newPost; 
+        }, 
+
+        likePost: async (_, { postId }, { user }) => {
+            const filter = { userId: user._id, postId }; 
+            let newLike = await Like.findOne(filter); 
+
+            // If like object does not exist in the database
+            // create one and save it 
+            if (newLike === null) {
+                newLike = new Like({
+                    userId: user._id,
+                    postId
+                });
+
+                await newLike.save();
+            }
+
+            // Otherwise, remove like object from the database 
+            else {
+                await Like.findOneAndRemove(filter);
+            }
+
+            // Retrieve post from database 
+            const post = await Post.findById(postId); 
+            return post; 
         }
     }, 
 
     Post: {
         likes: async ({ _id }) => {
-            let likes = await Like.find({ userId: _id });
+            let likes = await Like.find({ postId: _id });
             return likes;
         },
         comments: async ({ _id }) => {
-            let comments = await Comment.find({ userId: _id });
+            let comments = await Comment.find({ postId: _id });
             return comments;
         }, 
         author: async ({ authorId }) => {

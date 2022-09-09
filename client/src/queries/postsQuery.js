@@ -9,6 +9,8 @@ const GET_POSTS = gql`
             photoUrl
             likes{
                 _id
+                postId
+                userId
             }
             comments{
                 _id

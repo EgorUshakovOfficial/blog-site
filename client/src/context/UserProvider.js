@@ -14,7 +14,7 @@ const UserProvider = ({ children }) => {
     if (error) { <p>Error! Something has gone wrong!</p> }
 
     const { user } = data;
-
+    console.log(user);
     return (
         <UserContext.Provider value={{...user}}>
             {children}

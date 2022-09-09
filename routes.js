@@ -97,7 +97,7 @@ const routes = (app, User) => {
     // Logout 
     app.post('/logout', (req, res) => {
         const refreshToken = req?.signedCookies?.refreshToken;
-        console
+  
         // Http only cookie with the value of refresh token exists 
         if (refreshToken) {
             try {
@@ -116,7 +116,7 @@ const routes = (app, User) => {
                     })
             }
             catch (err) {
-                console.log(err);
+                (err);
             }
         }
         // Remove HTTP only cookie and the other that checks its existence 

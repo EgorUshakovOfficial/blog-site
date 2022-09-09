@@ -4,13 +4,17 @@ const typeDefs = gql`
     scalar Upload
 
     type Query{
+        "User who is authenticated"
         user: User!
+        "All posts"
         posts: [Post!]!
+        "Specific post"
         post(id: String!): Post
     }
 
     type Mutation{
         createPost(title: String!, description: String!, file: Upload!): Post
+        likePost(postId: String!): Post
     }
 
     type User{

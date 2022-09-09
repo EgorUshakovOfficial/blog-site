@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client';
 import { GET_POSTS } from '../queries/postsQuery'; 
 import Posts from './Posts';
 import Spinner from './Spinner'; 
-import Pagination from './Pagination'; 
 
 export default function AllPosts() {
 

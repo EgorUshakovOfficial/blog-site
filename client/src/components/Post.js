@@ -18,7 +18,7 @@ export default function Post({
             <p className="post-snippet">
                 {postSnippet}
             </p>
-            <Reactions numLikes={numLikes} numComments={numComments} id={id} />
+            <Reactions numLikes={numLikes} numComments={numComments} postId={id} />
         </div>
     )
 }
