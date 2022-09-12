@@ -20,6 +20,11 @@ const resolvers = {
         post: async (_, { id }) => {
             let post = await Post.findById(id); 
             return post; 
+        }, 
+
+        comments: async (_, { postId }) => {
+            let comments = await Comment.find({ postId }); 
+            return comments; 
         }
     },
 
@@ -73,6 +78,21 @@ const resolvers = {
             // Retrieve post from database 
             const post = await Post.findById(postId); 
             return post; 
+        }, 
+
+        createComment: async (_, { postId, comment }, { user }) => {
+            // Create new comment 
+            let newComment = new Comment({
+                userId: user._id,
+                postId,
+                comment
+            });
+
+            // Save it in the database 
+            await newComment.save(); 
+
+            return newComment; 
+
         }
     }, 
 

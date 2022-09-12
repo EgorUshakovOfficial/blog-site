@@ -31,7 +31,7 @@ export default function BlogPost() {
                     :
                     <>
                         <BlogInfo {...data.post } />
-                        <Comments />
+                        <Comments postId={data.post._id} />
                     </>
                 }
             </Content>

@@ -1,4 +1,4 @@
-export default function Comment() {
+export default function Comment({comment}) {
     return (
         <div className="comment">
             <div className="profile-div">
@@ -8,7 +8,7 @@ export default function Comment() {
                 />
             </div>
             <p className="comment-description">
-                Lorem ipsum dolor sit amet. Nulla rem mollitia facilis eum natus itaque et sunt maiores aut veniam doloribus. At illo sapiente ut esse nihil et soluta totam ad deleniti dolores qui cumque reiciendis. Et accusantium possimus id reprehenderit incidunt sed officia nostrum et dolor quia et odit quis qui accusamus ullam.
+                {comment}
             </p>
         </div>
     )

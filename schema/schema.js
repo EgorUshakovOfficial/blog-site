@@ -10,11 +10,14 @@ const typeDefs = gql`
         posts: [Post!]!
         "Specific post"
         post(id: String!): Post
+        "Comments for specific post"
+        comments(postId: String!): [Comment!]!
     }
 
     type Mutation{
         createPost(title: String!, description: String!, file: Upload!): Post
         likePost(postId: String!): Post
+        createComment(postId: String!, comment: String!): Comment
     }
 
     type User{
@@ -66,7 +69,7 @@ const typeDefs = gql`
         "Time of when comment is created"
         createdAt: String! 
         "Comment"
-        description: String!
+        comment: String!
     }
     
     type Like{
