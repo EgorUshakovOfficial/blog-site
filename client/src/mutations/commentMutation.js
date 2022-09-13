@@ -9,4 +9,13 @@ const CREATE_COMMENT = gql`
     }
 `; 
 
-export { CREATE_COMMENT }; 
+const DELETE_COMMENT = gql`
+    mutation deleteComment($commentId: String!){
+        deleteComment(commentId: $commentId){
+            _id
+            comment
+        }
+    }
+`
+
+export { CREATE_COMMENT, DELETE_COMMENT}; 

@@ -18,6 +18,7 @@ const typeDefs = gql`
         createPost(title: String!, description: String!, file: Upload!): Post
         likePost(postId: String!): Post
         createComment(postId: String!, comment: String!): Comment
+        deleteComment(commentId: String!): Comment
     }
 
     type User{

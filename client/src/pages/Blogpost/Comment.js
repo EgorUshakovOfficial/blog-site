@@ -1,4 +1,5 @@
-export default function Comment({comment}) {
+import CommentOptions from './CommentOptions'; 
+export default function Comment({ _id, comment}) {
     return (
         <div className="comment">
             <div className="profile-div">
@@ -10,6 +11,7 @@ export default function Comment({comment}) {
             <p className="comment-description">
                 {comment}
             </p>
+            <CommentOptions commentId={_id} />
         </div>
     )
 }

@@ -16,9 +16,8 @@ export default function Comments({postId}) {
             <MakeComment postId={postId} />
             {(!loading && data.comments.length === 0) && <p style={{fontSize:"1.125em", textAlign:"center"}}>No Comments available for this post</p>}
             {(!loading && data) ?  
-                data.comments.map(obj => {
-                    const { _id, comment } = obj; 
-                    return <Comment key={_id} comment={comment} />
+                data.comments.map(obj => { 
+                    return <Comment key={obj._id} {...obj} />
                 })
                 :
                 <Spinner />

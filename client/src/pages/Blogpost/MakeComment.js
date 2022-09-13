@@ -1,8 +1,13 @@
-import useComment from '../../hooks/useComment'; 
+import { CommentContext } from '../../context/CommentProvider'; 
+import { useContext } from 'react'; 
 
-export default function MakeComment({postId}) {
-    const {comment, setComment, handleComment} = useComment(postId); 
-
+export default function MakeComment() {
+    const {
+        postId,
+        handleComment,
+        comment, 
+        setComment
+    } = useContext(CommentContext);
     return (
         <form id="make-comment" onSubmit={handleComment}>
             <div className="profile-div">

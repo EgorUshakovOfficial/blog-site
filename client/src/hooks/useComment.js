@@ -1,13 +1,42 @@
 import { useState } from 'react'; 
 import { useMutation } from '@apollo/client';
-import { CREATE_COMMENT } from '../mutations/commentMutation';
+import { CREATE_COMMENT, DELETE_COMMENT } from '../mutations/commentMutation';
 import { GET_COMMENTS } from '../queries/commentsQuery'; 
 
-export default function useComment(postId) {
-    // State 
-    const [comment, setComment] = useState(''); 
 
-    // Comment mutation 
+export default function useComment(postId) {
+    const [comment, setComment] = useState(''); 
+    const [editCommentId, setEditCommentId] = useState('')
+    const [deleteCommentId, setDeleteCommentId] = useState('')
+
+    // Delete comment mutation 
+    const [deleteComment] = useMutation(DELETE_COMMENT, {
+        variables: {
+            commentId: deleteCommentId
+        }, 
+        update(cache, { data }) {
+            // Previous cache of comments for specified post 
+            const { comments } = cache.readQuery({
+                query: GET_COMMENTS,
+                variables: {
+                    postId
+                }
+            })
+
+            // Updated cache for comments 
+            cache.writeQuery({
+                query: GET_COMMENTS,
+                variables: {
+                    postId
+                }, 
+                data: { comments: comments.filter(comment => comment._id !== data.deleteComment._id ) }
+            })
+
+
+
+        }
+    })
+    // Create comment mutation 
     const [createComment] = useMutation(CREATE_COMMENT, {
         variables: {
             postId,
@@ -23,7 +52,6 @@ export default function useComment(postId) {
                 }
             }); 
 
-            console.log(comments);
 
             // Update cache for comments 
             cache.writeQuery({
@@ -48,10 +76,21 @@ export default function useComment(postId) {
 
     }
 
+    const handleDeleteComment = () => {
+        deleteComment(deleteCommentId)
+        setDeleteCommentId('')
+    }
+
     return {
         comment,
         setComment, 
-        handleComment
+        handleComment,
+        editCommentId, 
+        setEditCommentId, 
+        deleteCommentId, 
+        deleteComment,
+        handleDeleteComment,
+        setDeleteCommentId
     }
 
 

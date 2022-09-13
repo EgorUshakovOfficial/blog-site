@@ -2,6 +2,7 @@ import Layout from '../../containers/Layout';
 import Content from '../../containers/Content'; 
 import BlogInfo from './BlogInfo'; 
 import Comments from './Comments'; 
+import { CommentProvider } from '../../context/CommentProvider';
 import { useQuery } from '@apollo/client';
 import { GET_POST } from '../../queries/postQuery';
 import { useParams } from 'react-router-dom';
@@ -30,8 +31,10 @@ export default function BlogPost() {
                 }}>No post with id of {id} exists</p>
                     :
                     <>
-                        <BlogInfo {...data.post } />
-                        <Comments postId={data.post._id} />
+                        <BlogInfo {...data.post} />
+                        <CommentProvider postId={data.post._id}>
+                            <Comments postId={data.post._id} />
+                        </CommentProvider>
                     </>
                 }
             </Content>
