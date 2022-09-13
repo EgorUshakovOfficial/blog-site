@@ -45,11 +45,8 @@ export default function ReactionControls({ postId }) {
             <button className="reaction-button" onClick={() => likePost(postId)} style={{ color: likes.filter(obj => obj.postId === postId).length ? "blue" : "black" }}>
                 Like <FontAwesomeIcon icon={faThumbsUp} />
             </button>
-            <Link to="#" className="reaction-link">
-                Comment <FontAwesomeIcon icon={faComment} />
-            </Link>
             <Link to={`/post/${postId}`} className="reaction-link">
-                Read more
+                Comment <FontAwesomeIcon icon={faComment} />
             </Link>
         </div>
     )

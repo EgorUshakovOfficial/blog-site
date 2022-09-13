@@ -98,6 +98,11 @@ const resolvers = {
         deleteComment: async (_, { commentId }) => {
             let deletedComment = await Comment.findOneAndDelete({ _id: commentId }); 
             return deletedComment;
+        }, 
+
+        editComment: async (_, { commentId, comment}) => {
+            let editedComment = await Comment.findOneAndUpdate({ _id: commentId }, { comment }, {new:true}); 
+            return editedComment; 
         }
     }, 
 

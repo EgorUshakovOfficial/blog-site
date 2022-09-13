@@ -19,6 +19,7 @@ const typeDefs = gql`
         likePost(postId: String!): Post
         createComment(postId: String!, comment: String!): Comment
         deleteComment(commentId: String!): Comment
+        editComment(commentId: String!, comment: String!): Comment
     }
 
     type User{

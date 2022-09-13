@@ -3,7 +3,6 @@ import { useContext } from 'react';
 
 export default function MakeComment() {
     const {
-        postId,
         handleComment,
         comment, 
         setComment
@@ -22,10 +21,9 @@ export default function MakeComment() {
                     placeholder="Write a comment"
                     value={comment}
                     onChange={e => setComment(e.target.value)}
-                    required
                 />
             </div>
-            <button id="submit" type="submit">Post</button>
+            <button id="submit" type="submit" disabled={comment === ""}>Post</button>
         </form>
     )
 }

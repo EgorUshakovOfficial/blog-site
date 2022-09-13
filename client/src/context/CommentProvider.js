@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import CommentDeleteModal from '../pages/Blogpost/CommentDeleteModal';
+import CommentEditModal from '../pages/Blogpost/CommentEditModal'; 
 import useComment from '../hooks/useComment'; 
 
 // Comment Context 
@@ -11,6 +12,7 @@ const CommentProvider = ({ children, postId}) => {
     return (
         <CommentContext.Provider value={{ ...commentProps, postId }}>
             < CommentDeleteModal /> 
+            <CommentEditModal />
             {children}
         </CommentContext.Provider>
     )

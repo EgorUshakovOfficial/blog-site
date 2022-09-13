@@ -10,7 +10,7 @@ export default function CommentOptions({commentId}) {
     const { setEditCommentId, setDeleteCommentId} = useContext(CommentContext); 
     return (
         <div className="comment-options">
-            <Button variant="secondary" style={{marginRight: "0.25em"}}>
+            <Button variant="secondary" style={{ marginRight: "0.25em" }} onClick={() => setEditCommentId(commentId)}>
                 <FontAwesomeIcon icon={faPen} />
             </Button>
             <Button variant="danger" onClick={() => setDeleteCommentId(commentId)}>

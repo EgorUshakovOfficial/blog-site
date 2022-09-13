@@ -16,6 +16,15 @@ const DELETE_COMMENT = gql`
             comment
         }
     }
-`
+`; 
 
-export { CREATE_COMMENT, DELETE_COMMENT}; 
+const EDIT_COMMENT = gql`
+    mutation editComment($commentId: String!, $comment: String!){
+        editComment(commentId: $commentId, comment: $comment){
+            _id
+            comment
+        }
+    }
+`; 
+
+export { CREATE_COMMENT, DELETE_COMMENT, EDIT_COMMENT}; 

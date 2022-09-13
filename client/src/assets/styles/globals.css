@@ -83,6 +83,11 @@ button {
     padding-block: 0.25em;
 }
 
+button:disabled{
+    cursor: not-allowed;
+    opacity: 0.8; 
+}
+
 button[type="submit"]{
     background-color: #28A745;
     color: white;
@@ -188,13 +193,20 @@ button[type="submit"]{
     transition: box-shadow 0.5s;
 }
 
-.reactions-results, .reactions-controls {
-    justify-content: space-between;
+.reactions-results{
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
-.reactions-results, .post-snippet{
+.reactions-controls{
+    display: flex;
+    gap: 0.4em;
+}
+
+
+
+.reactions-results, .post-snippet {
     font-size: 1.125em;
 }
 
@@ -258,12 +270,6 @@ button[type="submit"]{
     margin-bottom: 0.8em;
 }
 
-#comments .profile-pic {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-}
-
 #make-comment{
     display: grid; 
     grid-template-columns: 56px auto 80px;
@@ -286,7 +292,7 @@ button[type="submit"]{
 }
 
 .comment-description{
-    width: 80%;
+    width: 100%;
     max-height: 100px;
     overflow-y: auto;
 }
@@ -338,7 +344,7 @@ button[type="submit"]{
 /* Modal */
 .modal {
     background-color: rgb(0, 0, 0, 0.15);
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -348,6 +354,7 @@ button[type="submit"]{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 2;
 }
 
 .modal-content {
@@ -380,11 +387,6 @@ button[type="submit"]{
     border-top: 1px solid lightgray;
     padding: 16px;
 }
-
-
-
-
-
 
 /* Sign in and sign up pages  */
 #login, #register{
@@ -464,6 +466,12 @@ button[type="submit"]{
     height: 180px;
     border-radius: 8px;
     object-fit: contain;
+}
+
+.profile-pic {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
 }
 
 @media(max-width: 1100px){
