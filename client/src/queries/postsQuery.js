@@ -16,7 +16,7 @@ const GET_POSTS = gql`
                 _id
             }
             author{
-                userId
+                _id
                 firstName
                 lastName
             }

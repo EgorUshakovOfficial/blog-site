@@ -1,15 +1,28 @@
 import { gql } from '@apollo/client'; 
 
-const POST_MUTATION = gql`
+const CREATE_POST = gql`
     mutation createPost($title: String!, $description: String!, $file: Upload!){
         createPost(title: $title, description: $description, file: $file){
             title
             description
             author{
-                userId
+                _id
             }
         }
     }
 `
 
-export { POST_MUTATION }; 
+const LIKE_POST = gql`
+    mutation likePost($postId: String!){
+        likePost(postId: $postId){
+            _id
+            likes{
+                _id
+                userId
+                postId
+            }
+        } 
+    }
+`
+
+export { CREATE_POST, LIKE_POST}; 

@@ -6,6 +6,7 @@ const GET_USER = gql`
             _id
             firstName
             lastName
+            photoUrl
             likes{
                 _id
                 userId
@@ -13,7 +14,6 @@ const GET_USER = gql`
             }
             comments{
                 _id
-                userId
             }
             posts{
                 _id
@@ -29,7 +29,7 @@ const GET_USER = gql`
                     postId
                 }
                 author{
-                    userId
+                    _id
                 }
             }
         }

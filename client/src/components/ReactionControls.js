@@ -7,7 +7,7 @@ import {
 import { useContext } from 'react'; 
 import { UserContext } from '../context/UserProvider'; 
 import { useMutation } from '@apollo/client';
-import { LIKE_POST } from '../mutations/likeMutation'; 
+import { LIKE_POST } from '../mutations/postMutation'; 
 import { GET_USER } from '../queries/userQuery'; 
 
 export default function ReactionControls({ postId }) {

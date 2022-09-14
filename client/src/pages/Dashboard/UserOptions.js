@@ -1,20 +1,23 @@
+import { useContext } from 'react';
 import PostForm from './PostForm'; 
 import UserAnalytics from './UserAnalytics';
-export default function UserOptions({numLikes, numComments, numPosts}) {
+import { UserContext } from '../../context/UserProvider';
+export default function UserOptions() {
+    const { posts, likes, comments, photoUrl} = useContext(UserContext); 
     return (
         <section id="user-options">
             <div id="user-info">
                 <div className="profile-div">
                     <img
-                        src="https://scontent.fyyc8-1.fna.fbcdn.net/v/t1.6435-9/115821478_3118181974896443_7757001406663804394_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=5GFLHOs5in8AX-mXpbO&_nc_ht=scontent.fyyc8-1.fna&oh=00_AT85u-Bbgv12Kh_VIZwYBAINLGR6Tki3pXghD3N1f7kBWA&oe=6329F324"
+                        src={photoUrl}
                         className="profile-pic"
                     />
                 </div>
                 <h2 id="data-title">Data Analytics</h2>
                 <UserAnalytics
-                    numLikes={numLikes}
-                    numComments={numComments}
-                    numPosts={numPosts}
+                    numLikes={likes.length}
+                    numComments={comments.length}
+                    numPosts={posts.length}
                 />
             </div>
             <PostForm />

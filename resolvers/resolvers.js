@@ -50,7 +50,6 @@ const resolvers = {
             }); 
 
             
-
             await newPost.save(); 
             return newPost; 
         }, 
@@ -104,7 +103,22 @@ const resolvers = {
             let editedComment = await Comment.findOneAndUpdate({ _id: commentId }, { comment }, {new:true}); 
             return editedComment; 
         }
-    }, 
+    },
+
+    User: {
+        likes: async ({ _id }) => {
+            let likes = await Like.find({ userId: _id });
+            return likes;
+        },
+        comments: async ({ _id }) => {
+            let comments = await Comment.find({ userId: _id });
+            return comments;
+        },
+        posts: async ({ _id }) => {
+            let userPosts = await Post.find({ authorId: _id });
+            return userPosts;
+        }
+    },
 
     Post: {
         likes: async ({ _id }) => {
@@ -116,31 +130,18 @@ const resolvers = {
             return comments;
         }, 
         author: async ({ authorId }) => {
-            console.log(authorId);
             let author = await User.findById(authorId);
-            console.log(author);
-            return {
-                userId: author._id, 
-                firstName: author.firstName, 
-                lastName: author.lastName
-            }
+            return author; 
         }
-    }, 
+    },
 
-    User: {
-        likes: async ({ _id }) => {
-            let likes = await Like.find({ userId:_id }); 
-            return likes; 
-        }, 
-        comments: async ({_id}) => {
-            let comments = await Comment.find({ userId: _id }); 
-            return comments; 
-        },
-        posts: async ({ _id }) => {
-            let userPosts = await Post.find({ authorId: _id }); 
-            return userPosts; 
+    Comment: {
+        author: async ({ userId }) => {
+            let author = await User.findById(userId); 
+            return author; 
         }
     }
+
 }
 
 export { resolvers }; 

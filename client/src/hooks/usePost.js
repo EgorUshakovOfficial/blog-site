@@ -1,6 +1,6 @@
 import { useState } from 'react'; 
 import { useMutation } from '@apollo/client'; 
-import { POST_MUTATION } from '../mutations/postMutation'; 
+import { CREATE_POST } from '../mutations/postMutation'; 
 import { GET_USER } from '../queries/userQuery';
 import { GET_POSTS } from '../queries/postsQuery';
 export default function usePost() {
@@ -8,7 +8,7 @@ export default function usePost() {
     const [image, setImage] = useState(null)
     const [description, setDescription] = useState('')
 
-    const [createPost] = useMutation(POST_MUTATION, {
+    const [createPost] = useMutation(CREATE_POST, {
         variables: {
             title, 
             description, 

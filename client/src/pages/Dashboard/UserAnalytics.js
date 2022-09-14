@@ -3,10 +3,7 @@ import {
     faThumbsUp,
     faComment
 } from '@fortawesome/free-solid-svg-icons';
-import { useContext } from 'react'; 
-import { UserContext } from '../../context/UserProvider'; 
 export default function UserAnalytics({ numLikes, numComments, numPosts }) {
-    const {posts, likes, comments } = useContext(UserContext); 
     return (
         <table id="user-analytics">
             <tr>
@@ -15,9 +12,9 @@ export default function UserAnalytics({ numLikes, numComments, numPosts }) {
                 <th>Posts</th>
             </tr>
             <tr>
-                <td>{likes.length}</td>
-                <td>{comments.length}</td>
-                <td>{posts.length}</td>
+                <td>{numLikes}</td>
+                <td>{numComments}</td>
+                <td>{numPosts}</td>
             </tr>
         </table>
     )

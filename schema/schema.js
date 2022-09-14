@@ -39,7 +39,8 @@ const typeDefs = gql`
     }
 
     type Author{
-        userId: ID! 
+        _id: ID! 
+        photoUrl: String!
         firstName: String!
         lastName: String!
     }
@@ -65,7 +66,7 @@ const typeDefs = gql`
     type Comment{
         _id: ID!
         "User ID of who commented on post with specific post id"
-        userId: String!
+        author: Author!
         "Comment associated with post Id"
         postId: String!
         "Time of when comment is created"

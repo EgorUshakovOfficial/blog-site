@@ -76,9 +76,6 @@ const getClient = token => {
                         }
                     }
                 }
-            },
-            Author: {
-                keyFields: ["userId"]
             }
         }
     })

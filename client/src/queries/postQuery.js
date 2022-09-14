@@ -9,7 +9,7 @@ const GET_POST = gql`
             createdAt
             photoUrl
             author{
-                userId
+                _id
                 firstName
                 lastName
             }
