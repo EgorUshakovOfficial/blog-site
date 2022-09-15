@@ -12,6 +12,14 @@ const CREATE_POST = gql`
     }
 `
 
+const DELETE_POST = gql`
+    mutation deletePost($postId: String!){
+        deletePost(postId: $postId){
+            _id
+        }
+    }
+`; 
+
 const LIKE_POST = gql`
     mutation likePost($postId: String!){
         likePost(postId: $postId){
@@ -25,4 +33,4 @@ const LIKE_POST = gql`
     }
 `
 
-export { CREATE_POST, LIKE_POST}; 
+export { CREATE_POST, DELETE_POST, LIKE_POST}; 

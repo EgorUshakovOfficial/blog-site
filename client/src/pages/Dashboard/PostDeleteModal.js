@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { PostContext } from '../../context/PostProvider';
 
 export default function PostDeleteModal() {
-    const { deletePostId, setDeletePostId } = useContext(PostContext); 
+    const { deletePostId, setDeletePostId, handleDeletePost} = useContext(PostContext); 
     return (
         <div
             className="modal"
@@ -20,7 +20,7 @@ export default function PostDeleteModal() {
                     <p>Are you sure you want to delete this post?</p>
                 </div>
                 <div className="modal-footer">
-                    <button className="btn btn-primary" type="button">Yes, delete it</button>
+                    <button className="btn btn-primary" type="button" onClick={handleDeletePost}>Yes, delete it</button>
                     <button className="btn btn-secondary" type="button" onClick={() => setDeletePostId("")}>No, keep it</button>
                 </div>
             </div>

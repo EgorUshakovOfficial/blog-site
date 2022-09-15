@@ -30,10 +30,15 @@ const getClient = token => {
                                 return incoming
                             }
                         }
-                    }, 
+                    },
                     comments: {
                         merge(existing, incoming) {
                             return incoming
+                        }
+                    },
+                    posts: {
+                        merge(existing, incoming) {
+                            return incoming;
                         }
                     }
                 }
@@ -71,6 +76,11 @@ const getClient = token => {
                         }
                     }, 
                     comments: {
+                        merge(existing, incoming) {
+                            return incoming;
+                        }
+                    }, 
+                    posts: {
                         merge(existing, incoming) {
                             return incoming;
                         }

@@ -45,6 +45,8 @@ const resolvers = {
             return updatedUser; 
 
         }, 
+
+        // Create post 
         createPost: async (_, { title, description, file }, { user }) => {
             let { createReadStream, filename} = await file; 
 
@@ -69,6 +71,29 @@ const resolvers = {
             await newPost.save(); 
             return newPost; 
         }, 
+
+        deletePost: async (_, { postId }) => {
+            // Remove all likes and comments associated 
+            // with specified post id  from database
+            await Like.remove({ postId }); 
+            await Comment.remove({ postId }); 
+
+            // Then remove post from it 
+            let deletedPost = await Post.findOneAndRemove({ _id: postId });
+
+            // Delete photo from storage 
+            let photoName = deletedPost.photoUrl.replace("http://localhost:4000/images/", "");
+            let currDirPath = process.cwd();
+            let pathName = path.join(currDirPath.replace('/resolvers', ''), `/public/images/${photoName}`);
+            fs.unlink(pathName, err => {
+                if (err) { console.log("File was not deleted from database") }
+                else {
+                    console.log(`${photoName} was successfully deleted from images directory`)
+                }
+            }); 
+
+            return deletedPost; 
+        },
 
         likePost: async (_, { postId }, { user }) => {
             const filter = { userId: user._id, postId }; 
