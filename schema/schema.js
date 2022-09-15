@@ -15,6 +15,7 @@ const typeDefs = gql`
     }
 
     type Mutation{
+        uploadProfilePic(file: Upload!): User
         createPost(title: String!, description: String!, file: Upload!): Post
         likePost(postId: String!): Post
         createComment(postId: String!, comment: String!): Comment

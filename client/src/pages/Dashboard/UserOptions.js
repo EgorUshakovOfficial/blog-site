@@ -1,7 +1,8 @@
 import { useContext } from 'react';
+import { UserContext } from '../../context/UserProvider';
+import EditProfilePic from './EditProfilePic'; 
 import PostForm from './PostForm'; 
 import UserAnalytics from './UserAnalytics';
-import { UserContext } from '../../context/UserProvider';
 export default function UserOptions() {
     const { posts, likes, comments, photoUrl} = useContext(UserContext); 
     return (
@@ -13,6 +14,7 @@ export default function UserOptions() {
                         className="profile-pic"
                     />
                 </div>
+                <EditProfilePic />
                 <h2 id="data-title">Data Analytics</h2>
                 <UserAnalytics
                     numLikes={likes.length}

@@ -169,6 +169,10 @@ button[type="submit"]{
     border-radius: 50%;
 }
 
+#edit-profile-pic{
+    cursor: pointer;
+}
+
 #user-analytics{
     width: 100%;
     border-collapse: collapse;

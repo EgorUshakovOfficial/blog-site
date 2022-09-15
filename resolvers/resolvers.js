@@ -29,6 +29,22 @@ const resolvers = {
     },
 
     Mutation: {
+        uploadProfilePic: async (_, { file }, { user }) => {
+            let { createReadStream, filename } = await file;  
+            const { ext } = path.parse(filename);
+
+            // Readable stream and generate random name for image 
+            const stream = createReadStream(); 
+            let currDirPath = process.cwd(); 
+            const { link, randomName } = generateLink(ext);
+            const pathName = path.join(currDirPath.replace('/resolvers', ''), `/public/images/${randomName}`); 
+            await stream.pipe(fs.createWriteStream(pathName)); 
+
+            // Update link for specified user in database 
+            let updatedUser = await User.findOneAndUpdate({ _id: user._id }, { photoUrl: link }, {new: true}) 
+            return updatedUser; 
+
+        }, 
         createPost: async (_, { title, description, file }, { user }) => {
             let { createReadStream, filename} = await file; 
 
