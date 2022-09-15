@@ -20,7 +20,7 @@ export default function CommentEditModal() {
         >
             <div className="modal-content" onClick={e => e.stopPropagation()}>
                 <div className="modal-header">
-                    <h2>Edit Post?</h2>
+                    <h2>Edit comment?</h2>
                 </div>
                 <div className="modal-body">
                     <div className="profile-div" style={{ display: "flex", justifyContent:"center" }}>

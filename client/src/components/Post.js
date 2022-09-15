@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom';
 import Reactions from '../components/Reactions';
+import PostOptions from '../pages/Dashboard/PostOptions';
+import PostOptionsButton from '../pages/Dashboard/PostOptionsButton';
+
 
 export default function Post({
     id,
@@ -11,7 +13,11 @@ export default function Post({
 }) {
     return (
         <div className="post">
-            <h3 className="post-title">{postTitle}</h3>
+            <div className="post-header">
+                <h3 className="post-title">{postTitle}</h3>
+                <PostOptionsButton postId={id} />
+                <PostOptions postId={id}/>
+            </div>
             <div className="blog-pic-div">
                 <img src={img} className="blog-pic" />
             </div>

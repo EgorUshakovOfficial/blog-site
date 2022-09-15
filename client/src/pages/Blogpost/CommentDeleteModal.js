@@ -20,7 +20,7 @@ export default function CommentDeleteModal(props) {
         >
             <div className="modal-content">
                 <div className="modal-header">
-                    <h2>Delete Post?</h2>
+                    <h2>Delete comment?</h2>
                 </div>
                 <div className="modal-body">
                     <p>Are you sure you want to delete this comment?</p>

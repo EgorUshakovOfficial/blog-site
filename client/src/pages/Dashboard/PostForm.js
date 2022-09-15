@@ -1,15 +1,16 @@
-import usePost from '../../hooks/usePost'; 
+import { useContext } from 'react'; 
+import { PostContext } from '../../context/PostProvider'; 
 
 export default function PostForm() {
     const {
-        title, 
-        setTitle, 
+        title,
+        setTitle,
+        image,
         setImage,
         description,
         setDescription,
-        image,
-        onSubmit 
-    } = usePost()
+        onSubmit
+    } = useContext(PostContext); 
     return (
         <form id="post-form" onSubmit={onSubmit}>
             <div className="field">

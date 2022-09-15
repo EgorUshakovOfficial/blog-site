@@ -197,6 +197,51 @@ button[type="submit"]{
     transition: box-shadow 0.5s;
 }
 
+.post-header{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.post-options-button{
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 90%;
+    border-radius: 50%;
+}
+
+.post-options {
+    background: white;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 0.4em; 
+    top: 120%;
+    left: 85%;
+    padding: 1em;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    box-shadow: 0 0 4px rgb(0 0 0 / 0.2);
+}
+
+.post-options-close{
+    cursor: pointer;
+    position: absolute;
+    top: -12%;
+    left: 56%;
+    font-size: 1.25em;
+    color: black;
+    font-weight: 800;
+}
+
+.post-options-close:hover{
+    opacity: 0.7;
+}
+
 .reactions-results{
     display: flex;
     align-items: center;

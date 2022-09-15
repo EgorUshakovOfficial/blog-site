@@ -4,6 +4,9 @@ import { CREATE_POST } from '../mutations/postMutation';
 import { GET_USER } from '../queries/userQuery';
 import { GET_POSTS } from '../queries/postsQuery';
 export default function usePost() {
+    const [postOptionsId, setPostOptionsId] = useState('')
+    const [editPostId, setEditPostId] = useState('')
+    const [deletePostId, setDeletePostId] = useState('')
     const [title, setTitle] = useState('')
     const [image, setImage] = useState(null)
     const [description, setDescription] = useState('')
@@ -41,6 +44,12 @@ export default function usePost() {
         setImage,
         description, 
         setDescription, 
-        onSubmit
+        postOptionsId,
+        setPostOptionsId,
+        editPostId,
+        setEditPostId, 
+        onSubmit,
+        deletePostId,
+        setDeletePostId
     }
 }
