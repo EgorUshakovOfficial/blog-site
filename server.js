@@ -27,7 +27,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
     connectdb();
 
     // Middleware 
-    app.use(express.static('public')); 
+    app.use( express.static('public')); 
     app.use(cors({
         origin: ["https://blog-site1234.herokuapp.com"],
         credentials: true
@@ -76,7 +76,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
     // Producition code 
     if (process.env.NODE_ENV === "production") {
         // Set static folder 
-/*        app.use(express.static('client/build'))*/
+        app.use(express.static('client/build'))
 
         app.get("*", (req, res) => {
             res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
