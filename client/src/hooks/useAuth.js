@@ -10,7 +10,7 @@ export default function useAuth() {
 	// Axios instance 
 	const api = useMemo(() => {
 		return axios.create({
-			baseURL: "http://localhost:4000",
+			baseURL: "https://blog-site1234.herokuapp.com",
 			withCredentials: true,
 			headers: {
 				"Content-type": "application/json"
@@ -46,7 +46,7 @@ export default function useAuth() {
 			.then(res => {
 
 				setToken(res.data.token); 
-				window.location.replace("http://localhost:3000");
+				window.location.replace("https://blog-site1234.herokuapp.com");
 			})
 			.catch(err => {
 				if (err.response.status === 401) {

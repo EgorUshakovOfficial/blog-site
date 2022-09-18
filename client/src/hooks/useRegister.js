@@ -17,7 +17,7 @@ export default function useRegister() {
         e.preventDefault()
 
         // POST request to /register 
-        axios.post("http://localhost:4000/register", {
+        axios.post("https://blog-site1234.herokuapp.com/register", {
             firstName, 
             lastName, 
             email, 

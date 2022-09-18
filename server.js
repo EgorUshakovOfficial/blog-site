@@ -29,7 +29,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
     // Middleware 
     app.use(express.static('public')); 
     app.use(cors({
-        origin: ["http://localhost:3000"],
+        origin: ["https://blog-site1234.herokuapp.com"],
         credentials: true
     })); 
     app.use(bodyParser.urlencoded({ extended: false })); 
@@ -61,7 +61,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
         app, 
         path: "/",
         cors: {
-            origin: ["http://localhost:3000"],
+            origin: ["https://blog-site1234.herokuapp.com"],
             credentials: true
         }, 
     }); 
