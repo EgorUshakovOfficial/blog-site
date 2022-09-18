@@ -41,15 +41,6 @@ const startApolloServer = async (typeDefs, resolvers) => {
     // Authentication routes 
     routes(app, User); 
 
-    if (process.env.NODE_ENV === "production") {
-        // Set static folder 
-        app.use(express.static('client/build'))
-
-        app.get("*", (req, res) => {
-            res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-        })
-
-    }
 
     const server = new ApolloServer({
         typeDefs,
@@ -81,6 +72,17 @@ const startApolloServer = async (typeDefs, resolvers) => {
     // Server listening
     const PORT = process.env.PORT || 4000; 
     httpServer.listen(PORT, () => console.log(`Server is listening on port ${PORT}`)); 
+
+    // Producition code 
+    if (process.env.NODE_ENV === "production") {
+        // Set static folder 
+        app.use(express.static('client/build'))
+
+        app.get("*", (req, res) => {
+            res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+        })
+
+    }
 }
 
 startApolloServer(typeDefs, resolvers); 
