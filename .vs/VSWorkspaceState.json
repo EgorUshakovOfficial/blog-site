@@ -1,14 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\client",
-    "\\client\\public",
-    "\\client\\src",
-    "\\client\\src\\containers",
     "\\client\\src\\pages",
-    "\\client\\src\\pages\\Blogpost",
-    "\\client\\src\\pages\\Dashboard"
+    "\\client\\src\\pages\\Dashboard",
+    "\\client\\src\\utils",
+    "\\schema"
   ],
-  "SelectedNode": "\\client\\src\\pages\\Dashboard\\Reactions.js",
+  "SelectedNode": "\\public",
   "PreviewInSolutionExplorer": false
 }

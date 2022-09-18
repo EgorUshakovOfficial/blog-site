@@ -12,6 +12,17 @@ const CREATE_POST = gql`
     }
 `
 
+const EDIT_POST = gql`
+    mutation editPost($postId: String!, $title: String!, $file: Upload!, $description: String!){
+        editPost(postId: $postId, title: $title, file: $file, description: $description){
+            _id
+            title
+            description
+            photoUrl
+        }
+    }
+`
+
 const DELETE_POST = gql`
     mutation deletePost($postId: String!){
         deletePost(postId: $postId){
@@ -33,4 +44,4 @@ const LIKE_POST = gql`
     }
 `
 
-export { CREATE_POST, DELETE_POST, LIKE_POST}; 
+export { CREATE_POST, EDIT_POST, DELETE_POST, LIKE_POST}; 

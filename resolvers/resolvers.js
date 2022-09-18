@@ -72,6 +72,34 @@ const resolvers = {
             return newPost; 
         }, 
 
+        editPost: async (_, { postId, title, file, description }) => {
+            const prevPost = await Post.findById(postId); 
+            const { createReadStream, filename } = await file; 
+            const { ext } = path.parse(filename)
+
+            // Save image in storage, generate a link for it, and save it in the database 
+            const stream = createReadStream(); 
+            let currDirPath = process.cwd(); 
+            const { link, randomName } = generateLink(ext); 
+            let pathName = path.join(currDirPath.replace('/resolvers', ''), `/public/images/${randomName}`); 
+            await stream.pipe(fs.createWriteStream(pathName)); 
+
+
+            // Delete previous image of specified post 
+            let prevPhotoName = prevPost.photoUrl.replace('http://localhost:4000/images/', ''); 
+            pathName = path.join(currDirPath.replace('/resolvers', ''), `/public/images/${prevPhotoName}`); 
+            fs.unlink(pathName, err => {
+                if (err) { return console.log(err); }
+                console.log(`Image with ${prevPhotoName} was successfully deleted`);
+            }); 
+
+            // Update photo url in the database 
+            let updatedPost = await Post.findOneAndUpdate({ _id: postId }, { title, description, photoUrl: link }, { new: true });
+            return updatedPost; 
+
+
+        }, 
+
         deletePost: async (_, { postId }) => {
             // Remove all likes and comments associated 
             // with specified post id  from database

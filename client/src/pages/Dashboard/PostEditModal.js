@@ -2,7 +2,16 @@ import { useContext } from 'react';
 import { PostContext } from '../../context/PostProvider';
 
 export default function PostEditModal() {
-    const { editPostId, setEditPostId } = useContext(PostContext); 
+    const {
+        editPostId,
+        setEditPostId, 
+        editedTitle, 
+        setEditedTitle, 
+        setEditedImage, 
+        editedDescription,
+        setEditedDescription, 
+        handleEditPost
+    } = useContext(PostContext); 
     return (
         <div
             className="modal"
@@ -24,14 +33,36 @@ export default function PostEditModal() {
                         />
                     </div>
                     <div className="field">
+                        <label>Title</label>
+                        <input
+                            type="text"
+                            placeholder="Edit title of post"
+                            value={editedTitle}
+                            onChange={e => setEditedTitle(e.target.value)}
+                        />
+                    </div>
+                    <div className="field">
+                        <label for="blog-pic">Upload photo</label>
+                        <input
+                            type="file"
+                            id="blog-pic"
+                            accept="image/*"
+                            onChange={e => setEditedImage(e.target.files[0])}
+                            required
+                        />
+                    </div>
+                    <div className="field">
+                        <label>Post</label>
                         <textarea
                             type="text"
                             placeholder="Edit your post"
+                            value={editedDescription}
+                            onChange={e => setEditedDescription(e.target.value)}
                         />
                     </div>
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-primary">Save changes</button>
+                    <button type="button" className="btn btn-primary" onClick={handleEditPost}>Save changes</button>
                     <button type="button" className="btn btn-secondary" onClick={() => setEditPostId("")}>Cancel</button>
                 </div>
             </div>

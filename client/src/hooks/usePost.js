@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation, useApolloClient} from '@apollo/client'; 
-import { CREATE_POST, DELETE_POST} from '../mutations/postMutation'; 
+import { CREATE_POST, EDIT_POST, DELETE_POST} from '../mutations/postMutation'; 
 import { GET_USER } from '../queries/userQuery';
 import { GET_POSTS } from '../queries/postsQuery';
 
@@ -9,12 +9,15 @@ export default function usePost() {
     const client = useApolloClient(); 
 
     // Post states
-    const [postOptionsId, setPostOptionsId] = useState('')
-    const [editPostId, setEditPostId] = useState('')
-    const [deletePostId, setDeletePostId] = useState('')
     const [title, setTitle] = useState('')
     const [image, setImage] = useState(null)
     const [description, setDescription] = useState('')
+    const [editedTitle, setEditedTitle] = useState('')
+    const [editedImage, setEditedImage] = useState(null)
+    const [editedDescription, setEditedDescription] = useState('')
+    const [postOptionsId, setPostOptionsId] = useState('')
+    const [editPostId, setEditPostId] = useState('')
+    const [deletePostId, setDeletePostId] = useState('')
 
     // Create post mutation
     const [createPost] = useMutation(CREATE_POST, {
@@ -29,6 +32,21 @@ export default function usePost() {
             }
         },
         refetchQueries: [GET_USER, GET_POSTS]
+    })
+
+    // Edit post mutatiion 
+    const [editPost] = useMutation(EDIT_POST, {
+        variables: {
+            postId: editPostId, 
+            title: editedTitle, 
+            file: editedImage, 
+            description: editedDescription
+        }, 
+        context: {
+            headers: {
+                "apollo-require-preflight": true
+            }
+        }
     })
 
     // Delete post mutation 
@@ -62,16 +80,6 @@ export default function usePost() {
         //}
     })
 
-    const handleDeletePost = () => {
-        // Delete post from database 
-        deletePost(deletePostId)
-
-        // Clear post options id and delete post id 
-        setDeletePostId('')
-        setPostOptionsId('')
-
-    }
-
     const onSubmit = e => {
         // Prevent form from being submitted to the server 
         e.preventDefault()
@@ -80,9 +88,32 @@ export default function usePost() {
         createPost(title, description, image)
 
         // Clear fields 
-        setTitle(''); 
-        setImage(null); 
-        setDescription(''); 
+        setTitle('');
+        setImage(null);
+        setDescription('');
+    }
+
+
+    const handleEditPost = () => {
+        // Edit post in the database 
+        editPost(editPostId, editedTitle, editedImage, editedDescription) 
+
+        // Clear all fields 
+        setEditedTitle('')
+        setEditedImage(null)
+        setEditedDescription('')
+        setEditPostId('')
+        setPostOptionsId('')
+    }
+
+    const handleDeletePost = () => {
+        // Delete post in the database 
+        deletePost(deletePostId)
+
+        // Clear post options id and delete post id 
+        setDeletePostId('')
+        setPostOptionsId('')
+
     }
 
     return {
@@ -91,6 +122,11 @@ export default function usePost() {
         setImage,
         description, 
         setDescription, 
+        editedTitle, 
+        setEditedTitle, 
+        setEditedImage, 
+        editedDescription, 
+        setEditedDescription,
         postOptionsId,
         setPostOptionsId,
         editPostId,
@@ -98,6 +134,7 @@ export default function usePost() {
         deletePostId,
         setDeletePostId,
         onSubmit,
-        handleDeletePost
+        handleDeletePost, 
+        handleEditPost
     }
 }
