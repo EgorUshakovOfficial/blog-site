@@ -5,7 +5,7 @@ import { createUploadLink } from 'apollo-upload-client';
 const getClient = token => {
     // Upload link 
     const uploadLink = createUploadLink({
-        uri: 'https://blog-site1234.herokuapp.com', 
+        uri: 'https://blog-site1234.herokuapp.com/graphql', 
     }); 
 
     // Authentication link 
