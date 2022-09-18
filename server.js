@@ -27,7 +27,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
     connectdb();
 
     // Middleware 
-    app.use('/images', express.static('public')); 
+    app.use(express.static('public')); 
     app.use(cors({
         origin: ["https://blog-site1234.herokuapp.com"],
         credentials: true
