@@ -5,6 +5,10 @@ const GET_COMMENTS = gql`
         comments(postId: $postId){
             _id
             comment
+            author{
+                _id
+                photoUrl
+            }
         }
     }
 `; 

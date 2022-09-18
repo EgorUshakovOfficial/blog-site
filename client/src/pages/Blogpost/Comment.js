@@ -1,18 +1,22 @@
+import { useContext } from 'react'; 
+import { UserContext } from '../../context/UserProvider';
 import CommentOptions from './CommentOptions'; 
 
-export default function Comment({ _id, comment, photoUrl}) {
+export default function Comment({ _id, comment, author}){
+    const { _id: userId } = useContext(UserContext)
+
     return (
         <div className="comment">
             <div className="profile-div">
                 <img
-                    src={photoUrl}
+                    src={author.photoUrl}
                     className="profile-pic"
                 />
             </div>
             <p className="comment-description">
                 {comment}
             </p>
-            <CommentOptions commentId={_id} />
+            {userId === author._id && <CommentOptions commentId={_id} />}
         </div>
     )
 }
