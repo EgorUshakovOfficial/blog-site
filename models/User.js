@@ -12,7 +12,7 @@ const userSchema = new Schema({
     firstName: { type: String },
     lastName: { type: String }, 
     email: { type: String }, 
-    photoUrl: {type: String, default:"http://localhost:4000/images/anonymous.jpg"}, 
+    photoUrl: { type: String, default:"https://blog-site1234.herokuapp.com/images/anonymous.jpg"}, 
     password: { type: String },
     refreshToken: { type: [sessionSchema], default:[]}
 })
