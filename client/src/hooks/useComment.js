@@ -40,7 +40,7 @@ export default function useComment(postId) {
 
         onCompleted: () => {
             client.refetchQueries({
-                include: [GET_USER]
+                include: [GET_USER, GET_POSTS]
             })
         }
     })
