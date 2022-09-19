@@ -1,12 +1,16 @@
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom'; 
+import { CommentProvider } from '../../context/CommentProvider';
+import { GET_POST } from '../../queries/postQuery';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import Layout from '../../containers/Layout'; 
 import Content from '../../containers/Content'; 
 import BlogInfo from './BlogInfo'; 
 import Comments from './Comments'; 
-import { CommentProvider } from '../../context/CommentProvider';
-import { useQuery } from '@apollo/client';
-import { GET_POST } from '../../queries/postQuery';
-import { useParams } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
+
 export default function BlogPost() {
     // Blog post id 
     const { id } = useParams();
@@ -28,7 +32,12 @@ export default function BlogPost() {
                     alignItems: "center",
                     fontSize: "1.125em",
                     minHeight: "calc(100vh - 2*56px - 2*0.8em)"
-                }}>No post with id of {id} exists</p>
+                }}>No post with id of {id} exists
+                    <br />
+                    <Link to="/">
+                        Go back <FontAwesomeIcon icon={faArrowLeft} />
+                    </Link>
+                </p>
                     :
                     <>
                         <BlogInfo {...data.post} />

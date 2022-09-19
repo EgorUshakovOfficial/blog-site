@@ -13,7 +13,6 @@ import SignUp from '../pages/Register/index';
 import SignIn from '../pages/Login/index';
 import BlogPost from '../pages/Blogpost/index';
 import { AuthContext } from '../context/AuthProvider';
-import { UserProvider } from '../context/UserProvider'; 
 import { getClient } from '../utils/getClient';
 
 export default function Presentational() {
