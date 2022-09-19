@@ -7,7 +7,7 @@ const UserContext = createContext({});
 
 // User provider 
 const UserProvider = ({ children }) => {
-    const { data, loading, error, refetch} = useQuery(GET_USER); 
+    const { data, loading, error} = useQuery(GET_USER); 
  
     if (loading) { return <Spinner />; }
 
