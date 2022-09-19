@@ -13,11 +13,8 @@ export default function Comment({ _id, comment, author}){
                     className="profile-pic"
                 />
             </div>
-            <p className="comment-name">
-                {author.firstName} {author.lastName}
-            </p>
             <p className="comment-description">
-                {comment}
+                {author.firstName} {author.lastName}: {comment}
             </p>
             {userId === author._id && <CommentOptions commentId={_id} />}
         </div>
