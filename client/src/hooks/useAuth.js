@@ -44,7 +44,6 @@ export default function useAuth() {
 		// POST request to login 
 		api.post("/login", { email, password })
 			.then(res => {
-
 				setToken(res.data.token); 
 				window.location.replace("https://blog-site1234.herokuapp.com");
 			})
