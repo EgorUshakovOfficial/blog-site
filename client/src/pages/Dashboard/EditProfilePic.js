@@ -31,8 +31,7 @@ export default function EditProfilePic() {
 
     // Hook used for uploading photo
     useEffect(() => {
-        console.log(newPic)
-        if (newPic !== null) {
+        if (newPic ) {
             uploadProfilePic(newPic)
         }
     }, [newPic]);

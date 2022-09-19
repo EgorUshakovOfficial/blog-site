@@ -13,6 +13,9 @@ export default function Comment({ _id, comment, author}){
                     className="profile-pic"
                 />
             </div>
+            <p className="comment-name">
+                {author.firstName} {author.lastName}
+            </p>
             <p className="comment-description">
                 {comment}
             </p>
