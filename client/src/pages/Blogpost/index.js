@@ -22,7 +22,7 @@ export default function BlogPost() {
     return (
         <Layout>
             <Content>
-                {error ? <p style={{
+                {(error || data.post === null) ? <p style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
