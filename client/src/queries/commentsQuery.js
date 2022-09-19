@@ -7,6 +7,8 @@ const GET_COMMENTS = gql`
             comment
             author{
                 _id
+                firstName
+                lastName
                 photoUrl
             }
         }

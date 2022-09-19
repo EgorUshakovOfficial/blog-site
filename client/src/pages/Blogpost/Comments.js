@@ -10,9 +10,9 @@ export default function Comments({ postId }) {
     const { photoUrl } = useContext(UserContext); 
 
     const { data, loading} = useQuery(GET_COMMENTS, {
-        variables: {
-            postId
-        }
+        variables: { postId }, 
+        fetchPolicy: "network-only"
+
     }); 
 
     return (
