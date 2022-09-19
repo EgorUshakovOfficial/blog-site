@@ -86,7 +86,7 @@ const resolvers = {
 
 
             // Delete previous image of specified post 
-            let prevPhotoName = prevPost.photoUrl.replace('http://localhost:4000/images/', ''); 
+            let prevPhotoName = prevPost.photoUrl.replace('https://blog-site1234.herokuapp.com/images/', ''); 
             pathName = path.join(currDirPath.replace('/resolvers', ''), `/public/images/${prevPhotoName}`); 
             fs.unlink(pathName, err => {
                 if (err) { return console.log(err); }
@@ -110,7 +110,7 @@ const resolvers = {
             let deletedPost = await Post.findOneAndRemove({ _id: postId });
 
             // Delete photo from storage 
-            let photoName = deletedPost.photoUrl.replace("http://localhost:4000/images/", "");
+            let photoName = deletedPost.photoUrl.replace("https://blog-site1234.herokuapp.com/images/", "");
             let currDirPath = process.cwd();
             let pathName = path.join(currDirPath.replace('/resolvers', ''), `/public/images/${photoName}`);
             fs.unlink(pathName, err => {
