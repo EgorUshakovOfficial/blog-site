@@ -34,7 +34,7 @@ export default function BlogPost() {
                     minHeight: "calc(100vh - 2*56px - 2*0.8em)"
                 }}>No post with id of {id} exists
                     <br />
-                    <Link to="/">
+                    <Link to="/" style={{display:"block"}}>
                         Go back <FontAwesomeIcon icon={faArrowLeft} />
                     </Link>
                 </p>
