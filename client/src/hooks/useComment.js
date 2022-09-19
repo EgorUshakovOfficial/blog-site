@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation, useApolloClient } from '@apollo/client';
-import { CREATE_COMMENT, DELETE_COMMENT, EDIT_COMMENT} from '../mutations/commentMutation';
+import { CREATE_COMMENT, DELETE_COMMENT, EDIT_COMMENT } from '../mutations/commentMutation';
+import { GET_POSTS } from '../queries/postsQuery'; 
 import { GET_COMMENTS } from '../queries/commentsQuery'; 
 import { GET_USER } from '../queries/userQuery'; 
 
@@ -70,7 +71,7 @@ export default function useComment(postId) {
 
         onCompleted: () => {
             client.refetchQueries({
-                include: [GET_USER]
+                include: [GET_USER, GET_POSTS]
             })
         }
 
