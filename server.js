@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import cors from 'cors';
 import http from 'http';
+import path from 'path'; 
 import { ApolloServer } from 'apollo-server-express';
 import {
     ApolloServerPluginDrainHttpServer,
