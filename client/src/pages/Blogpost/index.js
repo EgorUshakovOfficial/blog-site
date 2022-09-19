@@ -16,9 +16,7 @@ export default function BlogPost() {
     const { id } = useParams();
 
     const { loading, data, error } = useQuery(GET_POST, {
-        variables: {
-            id
-        }
+        variables: { id }
     })
 
     if (loading) { return <Spinner />; }
@@ -26,18 +24,19 @@ export default function BlogPost() {
     return (
         <Layout>
             <Content>
-                {(error || data.post === null) ? <p style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "1.125em",
-                    minHeight: "calc(100vh - 2*56px - 2*0.8em)"
-                }}>No post with id of {id} exists
-                    <br />
-                    <Link to="/" style={{display:"block"}}>
-                        Go back <FontAwesomeIcon icon={faArrowLeft} />
-                    </Link>
-                </p>
+                {(error || data.post === null) ?
+                    <p style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontSize: "1.125em",
+                        minHeight: "calc(100vh - 2*56px - 2*0.8em)"
+                    }}>No post with id of {id} exists
+                        <br />
+                        <Link to="/" style={{display:"block"}}>
+                            Go back <FontAwesomeIcon icon={faArrowLeft} />
+                        </Link>
+                    </p>
                     :
                     <>
                         <BlogInfo {...data.post} />

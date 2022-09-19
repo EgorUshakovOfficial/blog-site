@@ -5,7 +5,9 @@ import Spinner from './Spinner';
 
 export default function AllPosts() {
 
-	const { data, loading, error} = useQuery(GET_POSTS)
+	const { data, loading, error } = useQuery(GET_POSTS, {
+		fetchPolicy: "network-only"
+    })
 
 	if (error) { return <p>Error! Something has gone wrong!</p>; }
 
