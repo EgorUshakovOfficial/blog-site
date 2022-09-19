@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
-    "",
+    "\\client\\src\\assets\\styles",
     "\\client\\src\\pages",
+    "\\client\\src\\pages\\Blogpost",
     "\\client\\src\\pages\\Dashboard",
-    "\\client\\src\\utils",
+    "\\client\\src\\queries",
+    "\\resolvers",
     "\\schema"
   ],
-  "SelectedNode": "\\public",
   "PreviewInSolutionExplorer": false
 }
