@@ -1,16 +1,16 @@
 import { useState, useEffect, useMemo } from 'react';
-import axios from 'axios'; 
-export default function useAuth() {	
-	// State 
+import axios from 'axios';
+export default function useAuth() {
+	// State
 	const [token, setToken] = useState(null);
-	const [email, setEmail] = useState(''); 
-	const [password, setPassword] = useState(''); 
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
 
-	// Axios instance 
+	// Axios instance
 	const api = useMemo(() => {
 		return axios.create({
-			baseURL: "https://blog-site1234.herokuapp.com",
+			baseURL: "http://localhost:4000",
 			withCredentials: true,
 			headers: {
 				"Content-type": "application/json"
@@ -38,14 +38,14 @@ export default function useAuth() {
 	}, [])
 
 	const handleLogin = async e => {
-		// Prevent form from being submitted to the server 
+		// Prevent form from being submitted to the server
 		e.preventDefault();
 
-		// POST request to login 
+		// POST request to login
 		api.post("/login", { email, password })
 			.then(res => {
-				setToken(res.data.token); 
-				window.location.replace("https://blog-site1234.herokuapp.com");
+				setToken(res.data.token);
+				window.location.replace("http://localhost:3000");
 			})
 			.catch(err => {
 				if (err.response.status === 401) {
@@ -57,10 +57,10 @@ export default function useAuth() {
 	}
 
 	const handleLogout = e => {
-		// Prevent form from being submitted to the server 
+		// Prevent form from being submitted to the server
 		e.preventDefault();
 
-		// POST request to logout 
+		// POST request to logout
 		api.post("/logout")
 			.then(res => {
 				if (res.status === "") {
@@ -71,15 +71,15 @@ export default function useAuth() {
 	}
 
 	return {
-		token, 
-		setToken, 
-		email, 
-		setEmail, 
+		token,
+		setToken,
+		email,
+		setEmail,
 		password,
-		setPassword, 
-		handleLogin, 
-		handleLogout, 
-		error, 
+		setPassword,
+		handleLogin,
+		handleLogout,
+		error,
 		setError
 	}
 }

@@ -1,27 +1,27 @@
 import { useState } from 'react';
 import { useMutation, useApolloClient } from '@apollo/client';
 import { CREATE_COMMENT, DELETE_COMMENT, EDIT_COMMENT } from '../mutations/commentMutation';
-import { GET_POSTS } from '../queries/postsQuery'; 
-import { GET_COMMENTS } from '../queries/commentsQuery'; 
-import { GET_USER } from '../queries/userQuery'; 
+import { GET_POSTS } from '../queries/postsQuery';
+import { GET_COMMENTS } from '../queries/commentsQuery';
+import { GET_USER } from '../queries/userQuery';
 
 
 export default function useComment(postId) {
-    const [comment, setComment] = useState(''); 
+    const [comment, setComment] = useState('');
     const [editedComment, setEditedComment] = useState('')
     const [editCommentId, setEditCommentId] = useState('')
     const [deleteCommentId, setDeleteCommentId] = useState('')
 
-    // Apollo client 
-    const client = useApolloClient(); 
+    // Apollo client
+    const client = useApolloClient();
 
-    // Delete comment mutation 
+    // Delete comment mutation
     const [deleteComment] = useMutation(DELETE_COMMENT, {
         variables: {
             commentId: deleteCommentId
-        }, 
+        },
         update(cache, { data }) {
-            // Previous cache of comments for specified post 
+            // Previous cache of comments for specified post
             const { comments } = cache.readQuery({
                 query: GET_COMMENTS,
                 variables: {
@@ -29,15 +29,15 @@ export default function useComment(postId) {
                 }
             })
 
-            // Updated cache for comments 
+            // Updated cache for comments
             cache.writeQuery({
                 query: GET_COMMENTS,
                 variables: {
                     postId
-                }, 
+                },
                 data: { comments: comments.filter(comment => comment._id !== data.deleteComment._id ) }
             })
-        }, 
+        },
 
         onCompleted: () => {
             client.refetchQueries({
@@ -46,28 +46,28 @@ export default function useComment(postId) {
         }
     })
 
-    // Create comment mutation 
+    // Create comment mutation
     const [createComment] = useMutation(CREATE_COMMENT, {
         variables: {
             postId,
             comment
-        }, 
+        },
 
         update(cache, { data }) {
-            // Previous cache of comments for specified post 
+            // Previous cache of comments for specified post
             const { comments } = cache.readQuery({
                 query: GET_COMMENTS,
                 variables: {postId}
-            }); 
+            });
 
-            // Update cache for comments 
+            // Update cache for comments
             cache.writeQuery({
                 query: GET_COMMENTS,
                 variables: { postId },
                 data: { comments: [...comments, data.createComment] }
             })
 
-        }, 
+        },
 
         onCompleted: () => {
             client.refetchQueries({
@@ -75,33 +75,33 @@ export default function useComment(postId) {
             })
         }
 
-    }); 
+    });
 
-    // Edit comment 
+    // Edit comment
     const [editComment] = useMutation(EDIT_COMMENT, {
         variables: {
-            commentId: editCommentId, 
+            commentId: editCommentId,
             comment: editedComment
-        }, 
+        },
         update(cache, { data }) {
-            // Previous cache of comments for specified post 
+            // Previous cache of comments for specified post
             let { comments } =cache.readQuery({
                 query: GET_COMMENTS,
                 variables: { postId }
-            }); 
+            });
 
             comments = [...comments]
             let index = comments.findIndex(comment => comment._id === data.editComment._id)
             comments[index] = data.editComment
 
-            // Update cache of comments 
+            // Update cache of comments
             cache.writeQuery({
-                query: GET_COMMENTS, 
-                variables: { postId }, 
+                query: GET_COMMENTS,
+                variables: { postId },
                 data: {comments: [...comments]}
             })
 
-        }, 
+        },
 
         onCompleted: () => {
             client.refetchQueries({
@@ -111,27 +111,27 @@ export default function useComment(postId) {
     })
 
 
-    // Handle comment 
+    // Handle comment
     const handleComment = e => {
-        e.preventDefault(); 
+        e.preventDefault();
 
-        // Create new comment 
+        // Create new comment
         createComment(postId, comment);
 
-        // Reset comment 
+        // Reset comment
         setComment('');
 
     }
 
-    // Handle edit comment 
+    // Handle edit comment
     const handleEditComment = e => {
-        // Prevents modal click event from firing 
-        e.stopPropagation(); 
+        // Prevents modal click event from firing
+        e.stopPropagation();
 
         // Edit comment
-        editComment(editCommentId, editedComment); 
+        editComment(editCommentId, editedComment);
 
-        // Reset textarea input in modal and edited comment id 
+        // Reset textarea input in modal and edited comment id
         setEditCommentId('')
         setEditedComment('')
     }
@@ -146,16 +146,16 @@ export default function useComment(postId) {
 
     return {
         comment,
-        setComment, 
+        setComment,
         editedComment,
         setEditedComment,
         handleComment,
-        editCommentId, 
-        setEditCommentId, 
-        deleteCommentId, 
+        editCommentId,
+        setEditCommentId,
+        deleteCommentId,
         deleteComment,
         handleDeleteComment,
-        setDeleteCommentId, 
+        setDeleteCommentId,
         handleEditComment
     }
 

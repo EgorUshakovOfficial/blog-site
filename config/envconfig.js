@@ -1,3 +1,4 @@
 import dotenv from 'dotenv';
-// Configure .env files
+
+// Configures .env files
 dotenv.config();

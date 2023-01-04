@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom'; 
-import { useState } from 'react'; 
-import axios from 'axios'; 
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 export default function useRegister() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -8,20 +8,20 @@ export default function useRegister() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
-    // Navigate 
+    // Navigate
     const navigate = useNavigate()
 
-    // On submit 
+    // On submit
     const onSubmit = e => {
         // Prevent form from being submitted to the server
         e.preventDefault()
 
-        // POST request to /register 
-        axios.post("https://blog-site1234.herokuapp.com/register", {
-            firstName, 
-            lastName, 
-            email, 
-            password 
+        // POST request to /register
+        axios.post("http://localhost:4000/register", {
+            firstName,
+            lastName,
+            email,
+            password
         }).then(res => {
             const { data } = res
             if (data.success === false ) {
@@ -35,14 +35,14 @@ export default function useRegister() {
     }
 
     return {
-        firstName, 
-        setFirstName, 
-        lastName, 
-        setLastName, 
-        email, 
-        setEmail, 
+        firstName,
+        setFirstName,
+        lastName,
+        setLastName,
+        email,
+        setEmail,
         password,
-        setPassword, 
+        setPassword,
         onSubmit
     }
 }

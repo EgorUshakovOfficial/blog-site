@@ -1,22 +1,22 @@
-import mongoose from 'mongoose'; 
-const { Schema } = mongoose; 
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
-// Session schema 
+// Session schema
 const sessionSchema = new Schema({
-    token: { type: String }, 
+    token: { type: String },
     createdAt: { type: Date, default: Date.now }
 })
 
-// User schema 
+// User schema
 const userSchema = new Schema({
     firstName: { type: String },
-    lastName: { type: String }, 
-    email: { type: String }, 
-    photoUrl: { type: String, default:"https://blog-site1234.herokuapp.com/images/anonymous.jpg"}, 
+    lastName: { type: String },
+    email: { type: String },
+    photoUrl: { type: String, default:`${process.env.HOST}/images/anonymous.jpg`},
     password: { type: String },
     refreshToken: { type: [sessionSchema], default:[]}
 })
 
-const User = mongoose.model("User", userSchema); 
+const User = mongoose.model("User", userSchema);
 
-export { User }; 
+export { User };

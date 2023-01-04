@@ -1,14 +1,14 @@
-import { InMemoryCache, ApolloClient, HttpLink } from '@apollo/client'; 
-import { setContext } from '@apollo/client/link/context'; 
+import { InMemoryCache, ApolloClient, HttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
 
 const getClient = token => {
-    // Upload link 
+    // Upload link
     const uploadLink = createUploadLink({
-        uri: 'https://blog-site1234.herokuapp.com/graphql', 
-    }); 
+        uri: 'http://localhost:4000/graphql',
+    });
 
-    // Authentication link 
+    // Authentication link
     const authLink = setContext((_, { headers }) => {
         return {
             headers: {
@@ -19,7 +19,7 @@ const getClient = token => {
     })
 
 
-    // Cache 
+    // Cache
     const cache = new InMemoryCache({
         typePolicies: {
             Query: {
@@ -60,7 +60,7 @@ const getClient = token => {
                         merge(existing, incoming) {
                             return incoming;
                         }
-                    }, 
+                    },
                     comments: {
                         merge(existing, incoming) {
                             return incoming;
@@ -74,12 +74,12 @@ const getClient = token => {
                         merge(existing, incoming) {
                             return incoming
                         }
-                    }, 
+                    },
                     comments: {
                         merge(existing, incoming) {
                             return incoming;
                         }
-                    }, 
+                    },
                     posts: {
                         merge(existing, incoming) {
                             return incoming;
@@ -95,7 +95,7 @@ const getClient = token => {
         cache
     })
 
-    return client; 
+    return client;
 }
 
 export { getClient };
