@@ -10,7 +10,7 @@ export default function useAuth() {
 	// Axios instance
 	const api = useMemo(() => {
 		return axios.create({
-			baseURL: "http://localhost:4000",
+			baseURL: "https://blog-site-fign.onrender.com",
 			withCredentials: true,
 			headers: {
 				"Content-type": "application/json"

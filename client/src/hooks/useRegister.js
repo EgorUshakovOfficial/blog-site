@@ -17,7 +17,7 @@ export default function useRegister() {
         e.preventDefault()
 
         // POST request to /register
-        axios.post("http://localhost:4000/register", {
+        axios.post("https://blog-site-fign.onrender.com/register", {
             firstName,
             lastName,
             email,
