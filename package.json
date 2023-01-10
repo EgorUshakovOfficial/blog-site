@@ -6,7 +6,7 @@
   "type": "module",
  "scripts": {
     "start": "node server.js",
-    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "render-build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
