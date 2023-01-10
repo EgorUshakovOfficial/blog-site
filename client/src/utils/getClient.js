@@ -13,7 +13,7 @@ const getClient = token => {
         return {
             headers: {
                 ...headers,
-                authorization: token ? `bearer ${token}` : ""
+                authorization: token ? `bearer ${token}`
             }
         }
     })
